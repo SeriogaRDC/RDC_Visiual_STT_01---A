@@ -1,0 +1,34 @@
+# RDC Visual STT - Complete Self-Contained Requirements
+# =====================================================
+
+# Core dependencies
+requests>=2.31.0
+Pillow>=10.0.0
+pygetwindow>=0.0.9
+pyautogui>=0.9.54
+pywin32>=306
+pyperclip>=1.8.2
+
+# Speech recognition & AI
+torch>=2.0.0
+faster-whisper>=0.10.0
+openai-whisper>=20231117
+
+# Screen capture & monitoring
+mss>=9.0.1
+
+# UI framework (usually built-in but just in case)
+# tkinter  # Built into Python, no need to install
+
+# Optional: Enhanced audio processing
+sounddevice>=0.4.6
+soundfile>=0.12.1
+
+# JSON handling (built-in but good to specify)
+# json  # Built into Python
+
+# File system utilities (built-in)
+# os, glob, shutil  # Built into Python
+
+# Date/time handling (built-in)
+# datetime  # Built into Python

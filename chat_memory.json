@@ -1,0 +1,580 @@
+{
+  "total_entries": 82,
+  "last_updated": "2025-07-24T07:17:04.033280",
+  "entries": [
+    {
+      "timestamp": "2025-07-24T07:16:30.887729",
+      "type": "system",
+      "sender": "System",
+      "content": "Found 9 target windows",
+      "length": 22
+    },
+    {
+      "timestamp": "2025-07-24T07:16:30.943925",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "🔍 SIMPLIFIED Screen Detection:",
+      "length": 30
+    },
+    {
+      "timestamp": "2025-07-24T07:16:30.944925",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "  Primary Screen: 3840x2160",
+      "length": 27
+    },
+    {
+      "timestamp": "2025-07-24T07:16:30.945917",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "  Virtual Desktop: 3840x2160",
+      "length": 28
+    },
+    {
+      "timestamp": "2025-07-24T07:16:30.949925",
+      "type": "system",
+      "sender": "System",
+      "content": "�️ Added Screen 2 option (may be same as Screen 1)",
+      "length": 50
+    },
+    {
+      "timestamp": "2025-07-24T07:16:30.953445",
+      "type": "system",
+      "sender": "System",
+      "content": "📋 Available screen options: 2",
+      "length": 29
+    },
+    {
+      "timestamp": "2025-07-24T07:16:30.955444",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "  • Screen 1 (3840x2160)",
+      "length": 24
+    },
+    {
+      "timestamp": "2025-07-24T07:16:30.957444",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "  • Screen 2 (3840x2160)",
+      "length": 24
+    },
+    {
+      "timestamp": "2025-07-24T07:16:30.966752",
+      "type": "system",
+      "sender": "System",
+      "content": "📂 Loaded 8 chat memory entries",
+      "length": 30
+    },
+    {
+      "timestamp": "2025-07-24T07:16:30.970761",
+      "type": "system",
+      "sender": "System",
+      "content": "📂 Loaded 500 input memory entries",
+      "length": 33
+    },
+    {
+      "timestamp": "2025-07-24T07:16:30.971752",
+      "type": "system",
+      "sender": "System",
+      "content": "🎯 Visual Interpretation System v2.0 - SPEECH KEYWORD ACTIVATION!",
+      "length": 64
+    },
+    {
+      "timestamp": "2025-07-24T07:16:30.972752",
+      "type": "system",
+      "sender": "System",
+      "content": "",
+      "length": 0
+    },
+    {
+      "timestamp": "2025-07-24T07:16:30.973804",
+      "type": "system",
+      "sender": "System",
+      "content": "✨ New Features:",
+      "length": 15
+    },
+    {
+      "timestamp": "2025-07-24T07:16:30.979804",
+      "type": "system",
+      "sender": "System",
+      "content": "📥 Window Selection: Choose any open window as output target",
+      "length": 59
+    },
+    {
+      "timestamp": "2025-07-24T07:16:30.982804",
+      "type": "system",
+      "sender": "System",
+      "content": "📤 Unified Message Delivery: Complete payload with visual data",
+      "length": 61
+    },
+    {
+      "timestamp": "2025-07-24T07:16:30.990970",
+      "type": "system",
+      "sender": "System",
+      "content": "🖼️ Full Visual Interpretation: Comprehensive screenshot analysis",
+      "length": 64
+    },
+    {
+      "timestamp": "2025-07-24T07:16:30.992474",
+      "type": "system",
+      "sender": "System",
+      "content": "⚡ Burst Delivery: Instant paste with no typing delays",
+      "length": 53
+    },
+    {
+      "timestamp": "2025-07-24T07:16:31.002477",
+      "type": "system",
+      "sender": "System",
+      "content": "🚀 Auto-Press Enter: Automatically sends messages after delivery!",
+      "length": 64
+    },
+    {
+      "timestamp": "2025-07-24T07:16:31.004545",
+      "type": "system",
+      "sender": "System",
+      "content": "🎯 KEYWORD ACTIVATION: Say trigger words to auto-send!",
+      "length": 53
+    },
+    {
+      "timestamp": "2025-07-24T07:16:31.006552",
+      "type": "system",
+      "sender": "System",
+      "content": "⬆️⬇️ Message History: Use Up/Down arrows to navigate previous messages",
+      "length": 70
+    },
+    {
+      "timestamp": "2025-07-24T07:16:31.006552",
+      "type": "system",
+      "sender": "System",
+      "content": "",
+      "length": 0
+    },
+    {
+      "timestamp": "2025-07-24T07:16:31.008545",
+      "type": "system",
+      "sender": "System",
+      "content": "🎤 SPEECH-TO-TEXT WITH DUAL ACTIVATION MODES:",
+      "length": 44
+    },
+    {
+      "timestamp": "2025-07-24T07:16:31.009546",
+      "type": "system",
+      "sender": "System",
+      "content": "1. Click 🎤 TTS to start listening",
+      "length": 33
+    },
+    {
+      "timestamp": "2025-07-24T07:16:31.011552",
+      "type": "system",
+      "sender": "System",
+      "content": "2. Talk naturally - watch text accumulate in real-time",
+      "length": 54
+    },
+    {
+      "timestamp": "2025-07-24T07:16:31.013058",
+      "type": "system",
+      "sender": "System",
+      "content": "3A. KEYWORD MODE - Say trigger words to auto-send:",
+      "length": 50
+    },
+    {
+      "timestamp": "2025-07-24T07:16:31.015066",
+      "type": "system",
+      "sender": "System",
+      "content": "    • 'send it' • 'send' • 'I'm done' • 'done'",
+      "length": 46
+    },
+    {
+      "timestamp": "2025-07-24T07:16:31.017067",
+      "type": "system",
+      "sender": "System",
+      "content": "    • 'go' • 'submit' • 'fire' • 'execute' • 'deliver'",
+      "length": 54
+    },
+    {
+      "timestamp": "2025-07-24T07:16:31.018067",
+      "type": "system",
+      "sender": "System",
+      "content": "3B. SILENCE MODE - Just pause for 2-5 seconds:",
+      "length": 46
+    },
+    {
+      "timestamp": "2025-07-24T07:16:31.019067",
+      "type": "system",
+      "sender": "System",
+      "content": "    • Choose duration: 2s/3s/4s/5s",
+      "length": 34
+    },
+    {
+      "timestamp": "2025-07-24T07:16:31.022561",
+      "type": "system",
+      "sender": "System",
+      "content": "    • Stop talking → auto-send after pause",
+      "length": 42
+    },
+    {
+      "timestamp": "2025-07-24T07:16:31.025564",
+      "type": "system",
+      "sender": "System",
+      "content": "    • Perfect for natural conversation flow",
+      "length": 43
+    },
+    {
+      "timestamp": "2025-07-24T07:16:31.026563",
+      "type": "system",
+      "sender": "System",
+      "content": "4. Message automatically sends - continue talking for next message!",
+      "length": 67
+    },
+    {
+      "timestamp": "2025-07-24T07:16:31.028572",
+      "type": "system",
+      "sender": "System",
+      "content": "5. Mix and match: Use keywords for precision, silence for flow",
+      "length": 62
+    },
+    {
+      "timestamp": "2025-07-24T07:16:31.029564",
+      "type": "system",
+      "sender": "System",
+      "content": "",
+      "length": 0
+    },
+    {
+      "timestamp": "2025-07-24T07:16:31.036237",
+      "type": "system",
+      "sender": "System",
+      "content": "🔧 How to Use Unified Delivery:",
+      "length": 30
+    },
+    {
+      "timestamp": "2025-07-24T07:16:31.037078",
+      "type": "system",
+      "sender": "System",
+      "content": "1. Click 🔄 to refresh available windows",
+      "length": 39
+    },
+    {
+      "timestamp": "2025-07-24T07:16:31.039077",
+      "type": "system",
+      "sender": "System",
+      "content": "2. Select target window from dropdown",
+      "length": 37
+    },
+    {
+      "timestamp": "2025-07-24T07:16:31.041078",
+      "type": "system",
+      "sender": "System",
+      "content": "3. Enable 'Include Visual Context' for complete payloads",
+      "length": 56
+    },
+    {
+      "timestamp": "2025-07-24T07:16:31.042582",
+      "type": "system",
+      "sender": "System",
+      "content": "4. Click 'Direct Output: OFF' to enable targeting",
+      "length": 49
+    },
+    {
+      "timestamp": "2025-07-24T07:16:31.043593",
+      "type": "system",
+      "sender": "System",
+      "content": "5. Enable '⚡ Auto-Press Enter' for automatic message sending",
+      "length": 60
+    },
+    {
+      "timestamp": "2025-07-24T07:16:31.045585",
+      "type": "system",
+      "sender": "System",
+      "content": "6. Enable '🎯 Keyword Activation' for hands-free operation",
+      "length": 57
+    },
+    {
+      "timestamp": "2025-07-24T07:16:31.047585",
+      "type": "system",
+      "sender": "System",
+      "content": "7. Messages now include full visual context + metadata!",
+      "length": 55
+    },
+    {
+      "timestamp": "2025-07-24T07:16:31.054642",
+      "type": "system",
+      "sender": "System",
+      "content": "   📌 Delivered via instant clipboard paste (Ctrl+V)",
+      "length": 51
+    },
+    {
+      "timestamp": "2025-07-24T07:16:31.056642",
+      "type": "system",
+      "sender": "System",
+      "content": "   🚀 Plus automatic Enter press when enabled!",
+      "length": 45
+    },
+    {
+      "timestamp": "2025-07-24T07:16:31.057633",
+      "type": "system",
+      "sender": "System",
+      "content": "",
+      "length": 0
+    },
+    {
+      "timestamp": "2025-07-24T07:16:31.059633",
+      "type": "system",
+      "sender": "System",
+      "content": "⌨️ Message Entry:",
+      "length": 17
+    },
+    {
+      "timestamp": "2025-07-24T07:16:31.061641",
+      "type": "system",
+      "sender": "System",
+      "content": "• Type your message and press Enter to send",
+      "length": 43
+    },
+    {
+      "timestamp": "2025-07-24T07:16:31.063146",
+      "type": "system",
+      "sender": "System",
+      "content": "• Use ⬆️⬇️ arrow keys to navigate message history",
+      "length": 49
+    },
+    {
+      "timestamp": "2025-07-24T07:16:31.065155",
+      "type": "system",
+      "sender": "System",
+      "content": "• Compatible with speech-to-text software",
+      "length": 41
+    },
+    {
+      "timestamp": "2025-07-24T07:16:31.065155",
+      "type": "system",
+      "sender": "System",
+      "content": "",
+      "length": 0
+    },
+    {
+      "timestamp": "2025-07-24T07:16:31.071147",
+      "type": "system",
+      "sender": "System",
+      "content": "📸 Screenshot System:",
+      "length": 20
+    },
+    {
+      "timestamp": "2025-07-24T07:16:31.073673",
+      "type": "system",
+      "sender": "System",
+      "content": "• Select interval (3s/5s/10s) and click 'Start Rotation'",
+      "length": 56
+    },
+    {
+      "timestamp": "2025-07-24T07:16:31.074672",
+      "type": "system",
+      "sender": "System",
+      "content": "• AI will continuously interpret your screen",
+      "length": 44
+    },
+    {
+      "timestamp": "2025-07-24T07:16:31.076672",
+      "type": "system",
+      "sender": "System",
+      "content": "• Everything logged to vision_log.json",
+      "length": 38
+    },
+    {
+      "timestamp": "2025-07-24T07:16:31.077665",
+      "type": "system",
+      "sender": "System",
+      "content": "",
+      "length": 0
+    },
+    {
+      "timestamp": "2025-07-24T07:16:31.085186",
+      "type": "system",
+      "sender": "System",
+      "content": "🎬 ULTIMATE HANDS-FREE EXPERIENCE:",
+      "length": 33
+    },
+    {
+      "timestamp": "2025-07-24T07:16:31.087438",
+      "type": "system",
+      "sender": "System",
+      "content": "• Start speech listening + screenshot rotation",
+      "length": 46
+    },
+    {
+      "timestamp": "2025-07-24T07:16:31.089445",
+      "type": "system",
+      "sender": "System",
+      "content": "• Talk naturally while AI watches your screen",
+      "length": 45
+    },
+    {
+      "timestamp": "2025-07-24T07:16:31.090445",
+      "type": "system",
+      "sender": "System",
+      "content": "• Say 'send it' to deliver messages instantly",
+      "length": 45
+    },
+    {
+      "timestamp": "2025-07-24T07:16:31.092446",
+      "type": "system",
+      "sender": "System",
+      "content": "• Perfect for gaming, movies, or multitasking!",
+      "length": 46
+    },
+    {
+      "timestamp": "2025-07-24T07:16:31.092950",
+      "type": "system",
+      "sender": "System",
+      "content": "",
+      "length": 0
+    },
+    {
+      "timestamp": "2025-07-24T07:16:31.303337",
+      "type": "system",
+      "sender": "System",
+      "content": "🎯 1 Whisper models available",
+      "length": 28
+    },
+    {
+      "timestamp": "2025-07-24T07:16:31.309343",
+      "type": "system",
+      "sender": "System",
+      "content": "💡 Click '🤖 Load Models' to activate speech recognition",
+      "length": 54
+    },
+    {
+      "timestamp": "2025-07-24T07:16:35.283790",
+      "type": "system",
+      "sender": "System",
+      "content": "🎤 Speech listening STARTED - ULTRA FLUFFY MODE!",
+      "length": 47
+    },
+    {
+      "timestamp": "2025-07-24T07:16:35.287790",
+      "type": "system",
+      "sender": "System",
+      "content": "💬 System is now EXTREMELY patient with natural speech patterns",
+      "length": 62
+    },
+    {
+      "timestamp": "2025-07-24T07:16:35.298429",
+      "type": "system",
+      "sender": "System",
+      "content": "🕐 Allows up to 4.5 second thinking pauses without cutting",
+      "length": 57
+    },
+    {
+      "timestamp": "2025-07-24T07:16:35.308681",
+      "type": "system",
+      "sender": "System",
+      "content": "🗣️ Speak naturally - no need to rush your thoughts!",
+      "length": 51
+    },
+    {
+      "timestamp": "2025-07-24T07:16:35.313186",
+      "type": "system",
+      "sender": "System",
+      "content": "🎯🤫 DUAL MODE: Keywords OR silence activation enabled",
+      "length": 52
+    },
+    {
+      "timestamp": "2025-07-24T07:16:35.318195",
+      "type": "system",
+      "sender": "System",
+      "content": "🔴 Click STOP button to end speech session",
+      "length": 41
+    },
+    {
+      "timestamp": "2025-07-24T07:16:36.965591",
+      "type": "system",
+      "sender": "System",
+      "content": "🤖 Speech ready: faster-whisper-small (CUDA)",
+      "length": 43
+    },
+    {
+      "timestamp": "2025-07-24T07:16:36.974927",
+      "type": "system",
+      "sender": "System",
+      "content": "🔧 Switch models anytime with the Whisper button",
+      "length": 47
+    },
+    {
+      "timestamp": "2025-07-24T07:16:41.993072",
+      "type": "system",
+      "sender": "System",
+      "content": "🤫 SILENCE DETECTED (3s) - AUTO-SENDING MESSAGE!",
+      "length": 47
+    },
+    {
+      "timestamp": "2025-07-24T07:16:42.116003",
+      "type": "system",
+      "sender": "System",
+      "content": "📤 Sending NEW segment: 16 characters",
+      "length": 36
+    },
+    {
+      "timestamp": "2025-07-24T07:16:42.125041",
+      "type": "system",
+      "sender": "System",
+      "content": "📤 Message QUEUED for later (16 chars)",
+      "length": 37
+    },
+    {
+      "timestamp": "2025-07-24T07:16:42.134078",
+      "type": "you",
+      "sender": "You",
+      "content": "Chicken Chicken.",
+      "length": 16
+    },
+    {
+      "timestamp": "2025-07-24T07:16:55.442844",
+      "type": "deepseek-r1:32b",
+      "sender": "deepseek-r1:32b",
+      "content": "<think>\n\n</think>\n\nIt seems like you mentioned \"Chicken Chicken.\" Could you clarify or provide more context? Are you referring to a specific topic, such as chicken recipes, farming, or something else? Let me know how I can assist! 🐔",
+      "length": 232
+    },
+    {
+      "timestamp": "2025-07-24T07:16:58.450652",
+      "type": "system",
+      "sender": "System",
+      "content": "🤫 SILENCE DETECTED (3s) - AUTO-SENDING MESSAGE!",
+      "length": 47
+    },
+    {
+      "timestamp": "2025-07-24T07:16:58.565281",
+      "type": "system",
+      "sender": "System",
+      "content": "📤 Sending NEW segment: 22 characters",
+      "length": 36
+    },
+    {
+      "timestamp": "2025-07-24T07:16:58.573749",
+      "type": "system",
+      "sender": "System",
+      "content": "📤 Message QUEUED for later (22 chars)",
+      "length": 37
+    },
+    {
+      "timestamp": "2025-07-24T07:16:58.577762",
+      "type": "you",
+      "sender": "You",
+      "content": "Not a chicken checking",
+      "length": 22
+    },
+    {
+      "timestamp": "2025-07-24T07:17:04.026749",
+      "type": "deepseek-r1:32b",
+      "sender": "deepseek-r1:32b",
+      "content": "<think>\n\n</think>\n\nIt seems like you're referencing the \"not a chicken\" meme or concept, which is often used humorously to assert that something is definitively not a chicken. If you're referring to this in a specific context—like a joke, image, or situation—feel free to share more details so I can better understand and respond! How can I assist you further? 😊",
+      "length": 362
+    },
+    {
+      "timestamp": "2025-07-24T07:17:04.033280",
+      "type": "system",
+      "sender": "System",
+      "content": "🤫 Silence activation DISABLED",
+      "length": 29
+    }
+  ]
+}
