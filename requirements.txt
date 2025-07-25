@@ -13,6 +13,7 @@ pyperclip>=1.8.2
 torch>=2.0.0
 faster-whisper>=0.10.0
 openai-whisper>=20231117
+SpeechRecognition>=3.10.0  # Fixed: Added missing fallback speech recognition
 
 # Screen capture & monitoring
 mss>=9.0.1
