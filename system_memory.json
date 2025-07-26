@@ -1,0 +1,2246 @@
+{
+  "total_entries": 320,
+  "last_updated": "2025-07-26T20:41:12.099017",
+  "entries": [
+    {
+      "timestamp": "2025-07-26T20:35:53.303365",
+      "type": "system",
+      "sender": "System",
+      "content": "Found 11 target windows",
+      "length": 23
+    },
+    {
+      "timestamp": "2025-07-26T20:35:53.354187",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "🔍 SIMPLIFIED Screen Detection:",
+      "length": 30
+    },
+    {
+      "timestamp": "2025-07-26T20:35:53.354692",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "  Primary Screen: 3840x2160",
+      "length": 27
+    },
+    {
+      "timestamp": "2025-07-26T20:35:53.355694",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "  Virtual Desktop: 11520x2160",
+      "length": 29
+    },
+    {
+      "timestamp": "2025-07-26T20:35:53.360601",
+      "type": "system",
+      "sender": "System",
+      "content": "🖥️ Dual monitor setup detected!",
+      "length": 31
+    },
+    {
+      "timestamp": "2025-07-26T20:35:53.360601",
+      "type": "system",
+      "sender": "System",
+      "content": "📋 Available screen options: 2",
+      "length": 29
+    },
+    {
+      "timestamp": "2025-07-26T20:35:53.362176",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "  • Screen 1 (3840x2160)",
+      "length": 24
+    },
+    {
+      "timestamp": "2025-07-26T20:35:53.363759",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "  • Screen 2 (7680x2160)",
+      "length": 24
+    },
+    {
+      "timestamp": "2025-07-26T20:35:53.371629",
+      "type": "system",
+      "sender": "System",
+      "content": "📂 Loaded 8 system memory entries",
+      "length": 32
+    },
+    {
+      "timestamp": "2025-07-26T20:35:53.373256",
+      "type": "system",
+      "sender": "System",
+      "content": "📂 Loaded 0 chat memory entries",
+      "length": 30
+    },
+    {
+      "timestamp": "2025-07-26T20:35:53.376517",
+      "type": "system",
+      "sender": "System",
+      "content": "🎯 Visual Interpretation System v2.0 - UNIFIED MEMORY ARCHITECTURE!",
+      "length": 66
+    },
+    {
+      "timestamp": "2025-07-26T20:35:53.376517",
+      "type": "system",
+      "sender": "System",
+      "content": "",
+      "length": 0
+    },
+    {
+      "timestamp": "2025-07-26T20:35:53.382799",
+      "type": "system",
+      "sender": "System",
+      "content": "🔥 NEW MEMORY SYSTEM:",
+      "length": 20
+    },
+    {
+      "timestamp": "2025-07-26T20:35:53.385825",
+      "type": "system",
+      "sender": "System",
+      "content": "�️ System Memory: Debug/technical logs (system_memory.json)",
+      "length": 59
+    },
+    {
+      "timestamp": "2025-07-26T20:35:53.387601",
+      "type": "system",
+      "sender": "System",
+      "content": "💬 Chat Memory: Your conversations & voice (chat_memory.json)",
+      "length": 60
+    },
+    {
+      "timestamp": "2025-07-26T20:35:53.390721",
+      "type": "system",
+      "sender": "System",
+      "content": "�️ Vision Memory: Screenshot analysis (vision_memory.json)",
+      "length": 58
+    },
+    {
+      "timestamp": "2025-07-26T20:35:53.397137",
+      "type": "system",
+      "sender": "System",
+      "content": "📝 Vision Text & 📸 Vision Image now work IDENTICALLY!",
+      "length": 52
+    },
+    {
+      "timestamp": "2025-07-26T20:35:53.398904",
+      "type": "system",
+      "sender": "System",
+      "content": "✂️ Text accumulates with separators - grab any previous content!",
+      "length": 64
+    },
+    {
+      "timestamp": "2025-07-26T20:35:53.398904",
+      "type": "system",
+      "sender": "System",
+      "content": "",
+      "length": 0
+    },
+    {
+      "timestamp": "2025-07-26T20:35:53.400484",
+      "type": "system",
+      "sender": "System",
+      "content": "✨ Features:",
+      "length": 11
+    },
+    {
+      "timestamp": "2025-07-26T20:35:53.406777",
+      "type": "system",
+      "sender": "System",
+      "content": "📥 Window Selection: Choose any open window as output target",
+      "length": 59
+    },
+    {
+      "timestamp": "2025-07-26T20:35:53.408369",
+      "type": "system",
+      "sender": "System",
+      "content": "📤 Unified Message Delivery: Complete payload with visual data",
+      "length": 61
+    },
+    {
+      "timestamp": "2025-07-26T20:35:53.416455",
+      "type": "system",
+      "sender": "System",
+      "content": "🖼️ Full Visual Interpretation: Comprehensive screenshot analysis",
+      "length": 64
+    },
+    {
+      "timestamp": "2025-07-26T20:35:53.418071",
+      "type": "system",
+      "sender": "System",
+      "content": "⚡ Burst Delivery: Instant paste with no typing delays",
+      "length": 53
+    },
+    {
+      "timestamp": "2025-07-26T20:35:53.428336",
+      "type": "system",
+      "sender": "System",
+      "content": "🚀 Auto-Press Enter: Automatically sends messages after delivery!",
+      "length": 64
+    },
+    {
+      "timestamp": "2025-07-26T20:35:53.429910",
+      "type": "system",
+      "sender": "System",
+      "content": "🎯 KEYWORD ACTIVATION: Say trigger words to auto-send!",
+      "length": 53
+    },
+    {
+      "timestamp": "2025-07-26T20:35:53.431571",
+      "type": "system",
+      "sender": "System",
+      "content": "⬆️⬇️ Message History: Use Up/Down arrows to navigate previous messages",
+      "length": 70
+    },
+    {
+      "timestamp": "2025-07-26T20:35:53.433158",
+      "type": "system",
+      "sender": "System",
+      "content": "",
+      "length": 0
+    },
+    {
+      "timestamp": "2025-07-26T20:35:53.434864",
+      "type": "system",
+      "sender": "System",
+      "content": "🎤 SPEECH-TO-TEXT WITH DUAL ACTIVATION MODES:",
+      "length": 44
+    },
+    {
+      "timestamp": "2025-07-26T20:35:53.436516",
+      "type": "system",
+      "sender": "System",
+      "content": "1. Click 🎤 TTS to start listening",
+      "length": 33
+    },
+    {
+      "timestamp": "2025-07-26T20:35:53.438088",
+      "type": "system",
+      "sender": "System",
+      "content": "2. Talk naturally - watch text accumulate in real-time",
+      "length": 54
+    },
+    {
+      "timestamp": "2025-07-26T20:35:53.439694",
+      "type": "system",
+      "sender": "System",
+      "content": "3A. KEYWORD MODE - Say trigger words to auto-send:",
+      "length": 50
+    },
+    {
+      "timestamp": "2025-07-26T20:35:53.441479",
+      "type": "system",
+      "sender": "System",
+      "content": "    • 'send it' • 'send' • 'I'm done' • 'done'",
+      "length": 46
+    },
+    {
+      "timestamp": "2025-07-26T20:35:53.444657",
+      "type": "system",
+      "sender": "System",
+      "content": "    • 'go' • 'submit' • 'fire' • 'execute' • 'deliver'",
+      "length": 54
+    },
+    {
+      "timestamp": "2025-07-26T20:35:53.446191",
+      "type": "system",
+      "sender": "System",
+      "content": "3B. SILENCE MODE - Just pause for 2-5 seconds:",
+      "length": 46
+    },
+    {
+      "timestamp": "2025-07-26T20:35:53.447790",
+      "type": "system",
+      "sender": "System",
+      "content": "    • Choose duration: 2s/3s/4s/5s",
+      "length": 34
+    },
+    {
+      "timestamp": "2025-07-26T20:35:53.451081",
+      "type": "system",
+      "sender": "System",
+      "content": "    • Stop talking → auto-send after pause",
+      "length": 42
+    },
+    {
+      "timestamp": "2025-07-26T20:35:53.452764",
+      "type": "system",
+      "sender": "System",
+      "content": "    • Perfect for natural conversation flow",
+      "length": 43
+    },
+    {
+      "timestamp": "2025-07-26T20:35:53.454886",
+      "type": "system",
+      "sender": "System",
+      "content": "4. Message automatically sends - continue talking for next message!",
+      "length": 67
+    },
+    {
+      "timestamp": "2025-07-26T20:35:53.455889",
+      "type": "system",
+      "sender": "System",
+      "content": "5. Mix and match: Use keywords for precision, silence for flow",
+      "length": 62
+    },
+    {
+      "timestamp": "2025-07-26T20:35:53.457529",
+      "type": "system",
+      "sender": "System",
+      "content": "",
+      "length": 0
+    },
+    {
+      "timestamp": "2025-07-26T20:35:53.462266",
+      "type": "system",
+      "sender": "System",
+      "content": "🔧 How to Use Unified Delivery:",
+      "length": 30
+    },
+    {
+      "timestamp": "2025-07-26T20:35:53.463903",
+      "type": "system",
+      "sender": "System",
+      "content": "1. Click 🔄 to refresh available windows",
+      "length": 39
+    },
+    {
+      "timestamp": "2025-07-26T20:35:53.465409",
+      "type": "system",
+      "sender": "System",
+      "content": "2. Select target window from dropdown",
+      "length": 37
+    },
+    {
+      "timestamp": "2025-07-26T20:35:53.466998",
+      "type": "system",
+      "sender": "System",
+      "content": "3. Enable 'Include Visual Context' for complete payloads",
+      "length": 56
+    },
+    {
+      "timestamp": "2025-07-26T20:35:53.468586",
+      "type": "system",
+      "sender": "System",
+      "content": "4. Click 'Direct Output: OFF' to enable targeting",
+      "length": 49
+    },
+    {
+      "timestamp": "2025-07-26T20:35:53.471536",
+      "type": "system",
+      "sender": "System",
+      "content": "5. Enable '⚡ Auto-Press Enter' for automatic message sending",
+      "length": 60
+    },
+    {
+      "timestamp": "2025-07-26T20:35:53.473181",
+      "type": "system",
+      "sender": "System",
+      "content": "6. Enable '🎯 Keyword Activation' for hands-free operation",
+      "length": 57
+    },
+    {
+      "timestamp": "2025-07-26T20:35:53.474711",
+      "type": "system",
+      "sender": "System",
+      "content": "7. Messages now include full visual context + metadata!",
+      "length": 55
+    },
+    {
+      "timestamp": "2025-07-26T20:35:53.482452",
+      "type": "system",
+      "sender": "System",
+      "content": "   📌 Delivered via instant clipboard paste (Ctrl+V)",
+      "length": 51
+    },
+    {
+      "timestamp": "2025-07-26T20:35:53.485533",
+      "type": "system",
+      "sender": "System",
+      "content": "   🚀 Plus automatic Enter press when enabled!",
+      "length": 45
+    },
+    {
+      "timestamp": "2025-07-26T20:35:53.485533",
+      "type": "system",
+      "sender": "System",
+      "content": "",
+      "length": 0
+    },
+    {
+      "timestamp": "2025-07-26T20:35:53.488933",
+      "type": "system",
+      "sender": "System",
+      "content": "⌨️ Message Entry:",
+      "length": 17
+    },
+    {
+      "timestamp": "2025-07-26T20:35:53.490634",
+      "type": "system",
+      "sender": "System",
+      "content": "• Type your message and press Enter to send",
+      "length": 43
+    },
+    {
+      "timestamp": "2025-07-26T20:35:53.492200",
+      "type": "system",
+      "sender": "System",
+      "content": "• Use ⬆️⬇️ arrow keys to navigate message history",
+      "length": 49
+    },
+    {
+      "timestamp": "2025-07-26T20:35:53.494803",
+      "type": "system",
+      "sender": "System",
+      "content": "• Compatible with speech-to-text software",
+      "length": 41
+    },
+    {
+      "timestamp": "2025-07-26T20:35:53.495307",
+      "type": "system",
+      "sender": "System",
+      "content": "",
+      "length": 0
+    },
+    {
+      "timestamp": "2025-07-26T20:35:53.496914",
+      "type": "system",
+      "sender": "System",
+      "content": "📸 Screenshot System:",
+      "length": 20
+    },
+    {
+      "timestamp": "2025-07-26T20:35:53.498427",
+      "type": "system",
+      "sender": "System",
+      "content": "• Select interval (3s/5s/10s) and click 'Start Rotation'",
+      "length": 56
+    },
+    {
+      "timestamp": "2025-07-26T20:35:53.499625",
+      "type": "system",
+      "sender": "System",
+      "content": "• AI will continuously interpret your screen",
+      "length": 44
+    },
+    {
+      "timestamp": "2025-07-26T20:35:53.502562",
+      "type": "system",
+      "sender": "System",
+      "content": "• Everything logged to vision_memory.json",
+      "length": 41
+    },
+    {
+      "timestamp": "2025-07-26T20:35:53.502562",
+      "type": "system",
+      "sender": "System",
+      "content": "",
+      "length": 0
+    },
+    {
+      "timestamp": "2025-07-26T20:35:53.510507",
+      "type": "system",
+      "sender": "System",
+      "content": "🎬 ULTIMATE HANDS-FREE EXPERIENCE:",
+      "length": 33
+    },
+    {
+      "timestamp": "2025-07-26T20:35:53.519752",
+      "type": "system",
+      "sender": "System",
+      "content": "• Start speech listening + screenshot rotation",
+      "length": 46
+    },
+    {
+      "timestamp": "2025-07-26T20:35:53.521395",
+      "type": "system",
+      "sender": "System",
+      "content": "• Talk naturally while AI watches your screen",
+      "length": 45
+    },
+    {
+      "timestamp": "2025-07-26T20:35:53.522902",
+      "type": "system",
+      "sender": "System",
+      "content": "• Say 'send it' to deliver messages instantly",
+      "length": 45
+    },
+    {
+      "timestamp": "2025-07-26T20:35:53.525342",
+      "type": "system",
+      "sender": "System",
+      "content": "• Perfect for gaming, movies, or multitasking!",
+      "length": 46
+    },
+    {
+      "timestamp": "2025-07-26T20:35:53.525342",
+      "type": "system",
+      "sender": "System",
+      "content": "",
+      "length": 0
+    },
+    {
+      "timestamp": "2025-07-26T20:35:53.739233",
+      "type": "system",
+      "sender": "System",
+      "content": "🎯 1 Whisper models available",
+      "length": 28
+    },
+    {
+      "timestamp": "2025-07-26T20:35:53.744759",
+      "type": "system",
+      "sender": "System",
+      "content": "💡 Click '🤖 Load Models' to activate speech recognition",
+      "length": 54
+    },
+    {
+      "timestamp": "2025-07-26T20:36:11.490846",
+      "type": "system",
+      "sender": "System",
+      "content": "📋 Visual log window opened",
+      "length": 26
+    },
+    {
+      "timestamp": "2025-07-26T20:36:34.095001",
+      "type": "system",
+      "sender": "System",
+      "content": "📋 Visual log cleared from log window",
+      "length": 36
+    },
+    {
+      "timestamp": "2025-07-26T20:36:37.779183",
+      "type": "system",
+      "sender": "System",
+      "content": "🔄 Screenshot rotation STARTED (every 5s)",
+      "length": 40
+    },
+    {
+      "timestamp": "2025-07-26T20:36:37.787197",
+      "type": "system",
+      "sender": "System",
+      "content": "🔴 Button is now HIGHLIGHTED - rotation is ACTIVE!",
+      "length": 49
+    },
+    {
+      "timestamp": "2025-07-26T20:36:37.790461",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "📸 MSS CAPTURE: selected_screen_index = 1",
+      "length": 40
+    },
+    {
+      "timestamp": "2025-07-26T20:36:37.795319",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "   → SCREEN 1: monitor={'left': 0, 'top': 0, 'width': 3840, 'height': 2160}",
+      "length": 75
+    },
+    {
+      "timestamp": "2025-07-26T20:36:37.884233",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "   → PIL conversion: (3840, 2160) pixels",
+      "length": 40
+    },
+    {
+      "timestamp": "2025-07-26T20:36:37.887391",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "   → Ready to save as: Screen 1",
+      "length": 31
+    },
+    {
+      "timestamp": "2025-07-26T20:36:38.264587",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "📸 Screenshot captured from: Screen 1 (3840x2160)",
+      "length": 48
+    },
+    {
+      "timestamp": "2025-07-26T20:36:43.772845",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "📸 MSS CAPTURE: selected_screen_index = 1",
+      "length": 40
+    },
+    {
+      "timestamp": "2025-07-26T20:36:43.777437",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "   → SCREEN 1: monitor={'left': 0, 'top': 0, 'width': 3840, 'height': 2160}",
+      "length": 75
+    },
+    {
+      "timestamp": "2025-07-26T20:36:43.871394",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "   → PIL conversion: (3840, 2160) pixels",
+      "length": 40
+    },
+    {
+      "timestamp": "2025-07-26T20:36:43.876160",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "   → Ready to save as: Screen 1",
+      "length": 31
+    },
+    {
+      "timestamp": "2025-07-26T20:36:44.260305",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "📸 Screenshot captured from: Screen 1 (3840x2160)",
+      "length": 48
+    },
+    {
+      "timestamp": "2025-07-26T20:36:49.689785",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "📸 MSS CAPTURE: selected_screen_index = 1",
+      "length": 40
+    },
+    {
+      "timestamp": "2025-07-26T20:36:49.696708",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "   → SCREEN 1: monitor={'left': 0, 'top': 0, 'width': 3840, 'height': 2160}",
+      "length": 75
+    },
+    {
+      "timestamp": "2025-07-26T20:36:49.778179",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "   → PIL conversion: (3840, 2160) pixels",
+      "length": 40
+    },
+    {
+      "timestamp": "2025-07-26T20:36:49.784857",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "   → Ready to save as: Screen 1",
+      "length": 31
+    },
+    {
+      "timestamp": "2025-07-26T20:36:50.511095",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "📸 Screenshot captured from: Screen 1 (3840x2160)",
+      "length": 48
+    },
+    {
+      "timestamp": "2025-07-26T20:36:51.807257",
+      "type": "vision",
+      "sender": "Vision",
+      "content": "📸 screen_001.png: This screenshot appears to be a desktop environment with multiple open applications and windows, lik...",
+      "length": 121
+    },
+    {
+      "timestamp": "2025-07-26T20:36:55.036349",
+      "type": "vision",
+      "sender": "Vision",
+      "content": "📸 screen_002.png: This screenshot appears to be a development environment with multiple windows open, likely for a Pyt...",
+      "length": 121
+    },
+    {
+      "timestamp": "2025-07-26T20:36:55.957165",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "📸 MSS CAPTURE: selected_screen_index = 1",
+      "length": 40
+    },
+    {
+      "timestamp": "2025-07-26T20:36:55.961771",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "   → SCREEN 1: monitor={'left': 0, 'top': 0, 'width': 3840, 'height': 2160}",
+      "length": 75
+    },
+    {
+      "timestamp": "2025-07-26T20:36:56.037598",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "   → PIL conversion: (3840, 2160) pixels",
+      "length": 40
+    },
+    {
+      "timestamp": "2025-07-26T20:36:56.042255",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "   → Ready to save as: Screen 1",
+      "length": 31
+    },
+    {
+      "timestamp": "2025-07-26T20:36:56.749254",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "📸 Screenshot captured from: Screen 1 (3840x2160)",
+      "length": 48
+    },
+    {
+      "timestamp": "2025-07-26T20:37:02.175263",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "📸 MSS CAPTURE: selected_screen_index = 1",
+      "length": 40
+    },
+    {
+      "timestamp": "2025-07-26T20:37:02.182043",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "   → SCREEN 1: monitor={'left': 0, 'top': 0, 'width': 3840, 'height': 2160}",
+      "length": 75
+    },
+    {
+      "timestamp": "2025-07-26T20:37:02.259541",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "   → PIL conversion: (3840, 2160) pixels",
+      "length": 40
+    },
+    {
+      "timestamp": "2025-07-26T20:37:02.265861",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "   → Ready to save as: Screen 1",
+      "length": 31
+    },
+    {
+      "timestamp": "2025-07-26T20:37:02.972466",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "📸 Screenshot captured from: Screen 1 (3840x2160)",
+      "length": 48
+    },
+    {
+      "timestamp": "2025-07-26T20:37:07.990314",
+      "type": "vision",
+      "sender": "Vision",
+      "content": "📸 screen_001.png: This screenshot appears to be of a desktop environment with multiple open applications and a focus o...",
+      "length": 121
+    },
+    {
+      "timestamp": "2025-07-26T20:37:08.381843",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "📸 MSS CAPTURE: selected_screen_index = 1",
+      "length": 40
+    },
+    {
+      "timestamp": "2025-07-26T20:37:08.388016",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "   → SCREEN 1: monitor={'left': 0, 'top': 0, 'width': 3840, 'height': 2160}",
+      "length": 75
+    },
+    {
+      "timestamp": "2025-07-26T20:37:08.456572",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "   → PIL conversion: (3840, 2160) pixels",
+      "length": 40
+    },
+    {
+      "timestamp": "2025-07-26T20:37:08.461297",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "   → Ready to save as: Screen 1",
+      "length": 31
+    },
+    {
+      "timestamp": "2025-07-26T20:37:09.175003",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "📸 Screenshot captured from: Screen 1 (3840x2160)",
+      "length": 48
+    },
+    {
+      "timestamp": "2025-07-26T20:37:14.600172",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "📸 MSS CAPTURE: selected_screen_index = 1",
+      "length": 40
+    },
+    {
+      "timestamp": "2025-07-26T20:37:14.607415",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "   → SCREEN 1: monitor={'left': 0, 'top': 0, 'width': 3840, 'height': 2160}",
+      "length": 75
+    },
+    {
+      "timestamp": "2025-07-26T20:37:14.694982",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "   → PIL conversion: (3840, 2160) pixels",
+      "length": 40
+    },
+    {
+      "timestamp": "2025-07-26T20:37:14.700898",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "   → Ready to save as: Screen 1",
+      "length": 31
+    },
+    {
+      "timestamp": "2025-07-26T20:37:15.080615",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "📸 Screenshot captured from: Screen 1 (3840x2160)",
+      "length": 48
+    },
+    {
+      "timestamp": "2025-07-26T20:37:15.791774",
+      "type": "vision",
+      "sender": "Vision",
+      "content": "📸 screen_002.png: This screenshot appears to be of a desktop environment with multiple open applications and windows. ...",
+      "length": 121
+    },
+    {
+      "timestamp": "2025-07-26T20:37:20.023287",
+      "type": "system",
+      "sender": "System",
+      "content": "🎤 Speech listening STARTED - ULTRA FLUFFY MODE!",
+      "length": 47
+    },
+    {
+      "timestamp": "2025-07-26T20:37:20.029018",
+      "type": "system",
+      "sender": "System",
+      "content": "💬 System is now EXTREMELY patient with natural speech patterns",
+      "length": 62
+    },
+    {
+      "timestamp": "2025-07-26T20:37:20.036880",
+      "type": "system",
+      "sender": "System",
+      "content": "🕐 Allows up to 4.5 second thinking pauses without cutting",
+      "length": 57
+    },
+    {
+      "timestamp": "2025-07-26T20:37:20.047772",
+      "type": "system",
+      "sender": "System",
+      "content": "🗣️ Speak naturally - no need to rush your thoughts!",
+      "length": 51
+    },
+    {
+      "timestamp": "2025-07-26T20:37:20.051020",
+      "type": "system",
+      "sender": "System",
+      "content": "🎯🤫 DUAL MODE: Keywords OR silence activation enabled",
+      "length": 52
+    },
+    {
+      "timestamp": "2025-07-26T20:37:20.057219",
+      "type": "system",
+      "sender": "System",
+      "content": "🔴 Click STOP button to end speech session",
+      "length": 41
+    },
+    {
+      "timestamp": "2025-07-26T20:37:20.507460",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "📸 MSS CAPTURE: selected_screen_index = 1",
+      "length": 40
+    },
+    {
+      "timestamp": "2025-07-26T20:37:20.512184",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "   → SCREEN 1: monitor={'left': 0, 'top': 0, 'width': 3840, 'height': 2160}",
+      "length": 75
+    },
+    {
+      "timestamp": "2025-07-26T20:37:20.624310",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "   → PIL conversion: (3840, 2160) pixels",
+      "length": 40
+    },
+    {
+      "timestamp": "2025-07-26T20:37:20.630033",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "   → Ready to save as: Screen 1",
+      "length": 31
+    },
+    {
+      "timestamp": "2025-07-26T20:37:21.043245",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "📸 Screenshot captured from: Screen 1 (3840x2160)",
+      "length": 48
+    },
+    {
+      "timestamp": "2025-07-26T20:37:21.662116",
+      "type": "system",
+      "sender": "System",
+      "content": "🔄 EXTERNAL MODEL CHANGE DETECTED!",
+      "length": 33
+    },
+    {
+      "timestamp": "2025-07-26T20:37:21.670649",
+      "type": "system",
+      "sender": "System",
+      "content": "📢 Terminal switched to: faster-whisper-medium (CUDA)",
+      "length": 52
+    },
+    {
+      "timestamp": "2025-07-26T20:37:21.679261",
+      "type": "system",
+      "sender": "System",
+      "content": "📱 Updating main interface...",
+      "length": 28
+    },
+    {
+      "timestamp": "2025-07-26T20:37:22.613653",
+      "type": "system",
+      "sender": "System",
+      "content": "🤖 Speech ready: faster-whisper-medium (CUDA)",
+      "length": 44
+    },
+    {
+      "timestamp": "2025-07-26T20:37:22.620387",
+      "type": "system",
+      "sender": "System",
+      "content": "🔧 Switch models anytime with the Whisper button",
+      "length": 47
+    },
+    {
+      "timestamp": "2025-07-26T20:37:25.052545",
+      "type": "vision",
+      "sender": "Vision",
+      "content": "📸 screen_003.png: This screenshot shows a desktop environment with multiple open applications and windows. Here's a br...",
+      "length": 121
+    },
+    {
+      "timestamp": "2025-07-26T20:37:26.538984",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "📸 MSS CAPTURE: selected_screen_index = 1",
+      "length": 40
+    },
+    {
+      "timestamp": "2025-07-26T20:37:26.545076",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "   → SCREEN 1: monitor={'left': 0, 'top': 0, 'width': 3840, 'height': 2160}",
+      "length": 75
+    },
+    {
+      "timestamp": "2025-07-26T20:37:26.621368",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "   → PIL conversion: (3840, 2160) pixels",
+      "length": 40
+    },
+    {
+      "timestamp": "2025-07-26T20:37:26.626981",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "   → Ready to save as: Screen 1",
+      "length": 31
+    },
+    {
+      "timestamp": "2025-07-26T20:37:27.040147",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "📸 Screenshot captured from: Screen 1 (3840x2160)",
+      "length": 48
+    },
+    {
+      "timestamp": "2025-07-26T20:37:30.050935",
+      "type": "vision",
+      "sender": "Vision",
+      "content": "📸 screen_001.png: This screenshot appears to be a desktop environment with multiple open applications and windows. Her...",
+      "length": 121
+    },
+    {
+      "timestamp": "2025-07-26T20:37:32.483088",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "📸 MSS CAPTURE: selected_screen_index = 1",
+      "length": 40
+    },
+    {
+      "timestamp": "2025-07-26T20:37:32.488320",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "   → SCREEN 1: monitor={'left': 0, 'top': 0, 'width': 3840, 'height': 2160}",
+      "length": 75
+    },
+    {
+      "timestamp": "2025-07-26T20:37:32.560344",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "   → PIL conversion: (3840, 2160) pixels",
+      "length": 40
+    },
+    {
+      "timestamp": "2025-07-26T20:37:32.565001",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "   → Ready to save as: Screen 1",
+      "length": 31
+    },
+    {
+      "timestamp": "2025-07-26T20:37:32.962443",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "📸 Screenshot captured from: Screen 1 (3840x2160)",
+      "length": 48
+    },
+    {
+      "timestamp": "2025-07-26T20:37:33.702569",
+      "type": "vision",
+      "sender": "Vision",
+      "content": "📸 screen_002.png: This screenshot appears to be a desktop environment with multiple applications and windows open, lik...",
+      "length": 121
+    },
+    {
+      "timestamp": "2025-07-26T20:37:38.403898",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "📸 MSS CAPTURE: selected_screen_index = 1",
+      "length": 40
+    },
+    {
+      "timestamp": "2025-07-26T20:37:38.409248",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "   → SCREEN 1: monitor={'left': 0, 'top': 0, 'width': 3840, 'height': 2160}",
+      "length": 75
+    },
+    {
+      "timestamp": "2025-07-26T20:37:38.445095",
+      "type": "vision",
+      "sender": "Vision",
+      "content": "📸 screen_003.png: This screenshot appears to be a workspace with multiple applications and tools open, likely related ...",
+      "length": 121
+    },
+    {
+      "timestamp": "2025-07-26T20:37:38.488270",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "   → PIL conversion: (3840, 2160) pixels",
+      "length": 40
+    },
+    {
+      "timestamp": "2025-07-26T20:37:38.492933",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "   → Ready to save as: Screen 1",
+      "length": 31
+    },
+    {
+      "timestamp": "2025-07-26T20:37:38.890928",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "📸 Screenshot captured from: Screen 1 (3840x2160)",
+      "length": 48
+    },
+    {
+      "timestamp": "2025-07-26T20:37:41.939520",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "🔍 Checking text: 'i can't stress enough. i don't even remember. sometimes i know that my own monkey brain is guilty of that because i don't even remember how i explained to you. i need to be more precise, you know? first, i love what you did. like i said, you are overachiever.' against keywords: [\"I'm done talking\"]",
+      "length": 317
+    },
+    {
+      "timestamp": "2025-07-26T20:37:41.944313",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "✅ No keywords found in: 'i can't stress enough. i don't even remember. sometimes i know that my own monkey brain is guilty of that because i don't even remember how i explained to you. i need to be more precise, you know? first, i love what you did. like i said, you are overachiever.'",
+      "length": 285
+    },
+    {
+      "timestamp": "2025-07-26T20:37:41.947472",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "🕐 Starting silence timer: 3s for text: 'I can't stress enough. I don't...'",
+      "length": 74
+    },
+    {
+      "timestamp": "2025-07-26T20:37:44.339370",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "📸 MSS CAPTURE: selected_screen_index = 1",
+      "length": 40
+    },
+    {
+      "timestamp": "2025-07-26T20:37:44.346714",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "   → SCREEN 1: monitor={'left': 0, 'top': 0, 'width': 3840, 'height': 2160}",
+      "length": 75
+    },
+    {
+      "timestamp": "2025-07-26T20:37:44.420436",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "   → PIL conversion: (3840, 2160) pixels",
+      "length": 40
+    },
+    {
+      "timestamp": "2025-07-26T20:37:44.425569",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "   → Ready to save as: Screen 1",
+      "length": 31
+    },
+    {
+      "timestamp": "2025-07-26T20:37:44.509790",
+      "type": "vision",
+      "sender": "Vision",
+      "content": "📸 screen_001.png: This screenshot appears to be a desktop environment with multiple open applications and windows, lik...",
+      "length": 121
+    },
+    {
+      "timestamp": "2025-07-26T20:37:44.822747",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "📸 Screenshot captured from: Screen 1 (3840x2160)",
+      "length": 48
+    },
+    {
+      "timestamp": "2025-07-26T20:37:44.959297",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "🕐 Silence check: 3.0s passed, needed 3s",
+      "length": 39
+    },
+    {
+      "timestamp": "2025-07-26T20:37:44.963939",
+      "type": "system",
+      "sender": "System",
+      "content": "🤫 SILENCE DETECTED (3s) - AUTO-SENDING MESSAGE!",
+      "length": 47
+    },
+    {
+      "timestamp": "2025-07-26T20:37:44.969008",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "💬 Message being sent: 'I can't stress enough. I don't even remember. Some...'",
+      "length": 77
+    },
+    {
+      "timestamp": "2025-07-26T20:37:45.084644",
+      "type": "system",
+      "sender": "System",
+      "content": "📤 Sending NEW segment: 259 characters",
+      "length": 37
+    },
+    {
+      "timestamp": "2025-07-26T20:37:45.089788",
+      "type": "system",
+      "sender": "System",
+      "content": "📤 Message QUEUED for later (259 chars)",
+      "length": 38
+    },
+    {
+      "timestamp": "2025-07-26T20:37:45.096655",
+      "type": "you",
+      "sender": "You",
+      "content": "I can't stress enough. I don't even remember. Sometimes I know that my own monkey brain is guilty of that because I don't even remember how I explained to you. I need to be more precise, you know? First, I love what you did. Like I said, you are overachiever.",
+      "length": 259
+    },
+    {
+      "timestamp": "2025-07-26T20:37:50.415285",
+      "type": "qwen2.5vl:7b",
+      "sender": "qwen2.5vl:7b",
+      "content": "It's great to hear that you appreciate the effort and precision put into the work. It's always important to be clear and precise, especially when discussing important topics or providing detailed explanations. Your feedback is very valuable, and it's wonderful to know that you find the work to be of high quality. If you have any specific questions or need further clarification on any topic, feel free to ask!",
+      "length": 411
+    },
+    {
+      "timestamp": "2025-07-26T20:37:50.418870",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "📸 MSS CAPTURE: selected_screen_index = 1",
+      "length": 40
+    },
+    {
+      "timestamp": "2025-07-26T20:37:50.431648",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "🔍 Checking text: 'it's not working now. okay, now it does. kinda.' against keywords: [\"I'm done talking\"]",
+      "length": 105
+    },
+    {
+      "timestamp": "2025-07-26T20:37:50.434732",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "✅ No keywords found in: 'it's not working now. okay, now it does. kinda.'",
+      "length": 73
+    },
+    {
+      "timestamp": "2025-07-26T20:37:50.438361",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "🕐 Starting silence timer: 3s for text: 'It's not working now. Okay, no...'",
+      "length": 74
+    },
+    {
+      "timestamp": "2025-07-26T20:37:50.443449",
+      "type": "vision",
+      "sender": "Vision",
+      "content": "📸 screen_002.png: This screenshot appears to be a desktop environment with multiple open applications and windows, lik...",
+      "length": 121
+    },
+    {
+      "timestamp": "2025-07-26T20:37:50.444451",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "   → SCREEN 1: monitor={'left': 0, 'top': 0, 'width': 3840, 'height': 2160}",
+      "length": 75
+    },
+    {
+      "timestamp": "2025-07-26T20:37:50.463301",
+      "type": "system",
+      "sender": "System",
+      "content": "🎯 Keyword activation DISABLED",
+      "length": 29
+    },
+    {
+      "timestamp": "2025-07-26T20:37:50.468085",
+      "type": "system",
+      "sender": "System",
+      "content": "🎯 Keyword activation ENABLED",
+      "length": 28
+    },
+    {
+      "timestamp": "2025-07-26T20:37:50.472801",
+      "type": "system",
+      "sender": "System",
+      "content": "🎯 Keyword activation DISABLED",
+      "length": 29
+    },
+    {
+      "timestamp": "2025-07-26T20:37:50.531315",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "   → PIL conversion: (3840, 2160) pixels",
+      "length": 40
+    },
+    {
+      "timestamp": "2025-07-26T20:37:50.535380",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "   → Ready to save as: Screen 1",
+      "length": 31
+    },
+    {
+      "timestamp": "2025-07-26T20:37:50.939683",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "📸 Screenshot captured from: Screen 1 (3840x2160)",
+      "length": 48
+    },
+    {
+      "timestamp": "2025-07-26T20:37:51.103465",
+      "type": "system",
+      "sender": "System",
+      "content": "🤫 Silence activation DISABLED",
+      "length": 29
+    },
+    {
+      "timestamp": "2025-07-26T20:37:54.750154",
+      "type": "vision",
+      "sender": "Vision",
+      "content": "📸 screen_003.png: This screenshot appears to be a composite of multiple windows and panels, likely from a development ...",
+      "length": 121
+    },
+    {
+      "timestamp": "2025-07-26T20:37:56.380973",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "📸 MSS CAPTURE: selected_screen_index = 1",
+      "length": 40
+    },
+    {
+      "timestamp": "2025-07-26T20:37:56.387707",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "   → SCREEN 1: monitor={'left': 0, 'top': 0, 'width': 3840, 'height': 2160}",
+      "length": 75
+    },
+    {
+      "timestamp": "2025-07-26T20:37:56.456574",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "   → PIL conversion: (3840, 2160) pixels",
+      "length": 40
+    },
+    {
+      "timestamp": "2025-07-26T20:37:56.461095",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "   → Ready to save as: Screen 1",
+      "length": 31
+    },
+    {
+      "timestamp": "2025-07-26T20:37:56.877255",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "📸 Screenshot captured from: Screen 1 (3840x2160)",
+      "length": 48
+    },
+    {
+      "timestamp": "2025-07-26T20:38:02.027120",
+      "type": "vision",
+      "sender": "Vision",
+      "content": "📸 screen_001.png: This screenshot appears to be a desktop environment with multiple applications and windows open, lik...",
+      "length": 121
+    },
+    {
+      "timestamp": "2025-07-26T20:38:02.311877",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "📸 MSS CAPTURE: selected_screen_index = 1",
+      "length": 40
+    },
+    {
+      "timestamp": "2025-07-26T20:38:02.318027",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "   → SCREEN 1: monitor={'left': 0, 'top': 0, 'width': 3840, 'height': 2160}",
+      "length": 75
+    },
+    {
+      "timestamp": "2025-07-26T20:38:02.388538",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "   → PIL conversion: (3840, 2160) pixels",
+      "length": 40
+    },
+    {
+      "timestamp": "2025-07-26T20:38:02.394303",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "   → Ready to save as: Screen 1",
+      "length": 31
+    },
+    {
+      "timestamp": "2025-07-26T20:38:02.802561",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "📸 Screenshot captured from: Screen 1 (3840x2160)",
+      "length": 48
+    },
+    {
+      "timestamp": "2025-07-26T20:38:04.962397",
+      "type": "vision",
+      "sender": "Vision",
+      "content": "📸 screen_002.png: This screenshot appears to be a desktop environment with multiple open applications and windows, lik...",
+      "length": 121
+    },
+    {
+      "timestamp": "2025-07-26T20:38:08.242279",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "📸 MSS CAPTURE: selected_screen_index = 1",
+      "length": 40
+    },
+    {
+      "timestamp": "2025-07-26T20:38:08.247966",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "   → SCREEN 1: monitor={'left': 0, 'top': 0, 'width': 3840, 'height': 2160}",
+      "length": 75
+    },
+    {
+      "timestamp": "2025-07-26T20:38:08.322089",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "   → PIL conversion: (3840, 2160) pixels",
+      "length": 40
+    },
+    {
+      "timestamp": "2025-07-26T20:38:08.327801",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "   → Ready to save as: Screen 1",
+      "length": 31
+    },
+    {
+      "timestamp": "2025-07-26T20:38:08.736240",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "📸 Screenshot captured from: Screen 1 (3840x2160)",
+      "length": 48
+    },
+    {
+      "timestamp": "2025-07-26T20:38:10.594959",
+      "type": "vision",
+      "sender": "Vision",
+      "content": "📸 screen_003.png: This screenshot appears to be a workspace setup for a software development project, likely involving...",
+      "length": 121
+    },
+    {
+      "timestamp": "2025-07-26T20:38:14.172946",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "📸 MSS CAPTURE: selected_screen_index = 1",
+      "length": 40
+    },
+    {
+      "timestamp": "2025-07-26T20:38:14.178562",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "   → SCREEN 1: monitor={'left': 0, 'top': 0, 'width': 3840, 'height': 2160}",
+      "length": 75
+    },
+    {
+      "timestamp": "2025-07-26T20:38:14.254338",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "   → PIL conversion: (3840, 2160) pixels",
+      "length": 40
+    },
+    {
+      "timestamp": "2025-07-26T20:38:14.260834",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "   → Ready to save as: Screen 1",
+      "length": 31
+    },
+    {
+      "timestamp": "2025-07-26T20:38:14.675036",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "📸 Screenshot captured from: Screen 1 (3840x2160)",
+      "length": 48
+    },
+    {
+      "timestamp": "2025-07-26T20:38:20.112695",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "📸 MSS CAPTURE: selected_screen_index = 1",
+      "length": 40
+    },
+    {
+      "timestamp": "2025-07-26T20:38:20.120316",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "   → SCREEN 1: monitor={'left': 0, 'top': 0, 'width': 3840, 'height': 2160}",
+      "length": 75
+    },
+    {
+      "timestamp": "2025-07-26T20:38:20.199342",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "   → PIL conversion: (3840, 2160) pixels",
+      "length": 40
+    },
+    {
+      "timestamp": "2025-07-26T20:38:20.204850",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "   → Ready to save as: Screen 1",
+      "length": 31
+    },
+    {
+      "timestamp": "2025-07-26T20:38:20.632076",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "📸 Screenshot captured from: Screen 1 (3840x2160)",
+      "length": 48
+    },
+    {
+      "timestamp": "2025-07-26T20:38:26.077848",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "📸 MSS CAPTURE: selected_screen_index = 1",
+      "length": 40
+    },
+    {
+      "timestamp": "2025-07-26T20:38:26.085645",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "   → SCREEN 1: monitor={'left': 0, 'top': 0, 'width': 3840, 'height': 2160}",
+      "length": 75
+    },
+    {
+      "timestamp": "2025-07-26T20:38:26.154580",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "   → PIL conversion: (3840, 2160) pixels",
+      "length": 40
+    },
+    {
+      "timestamp": "2025-07-26T20:38:26.158663",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "   → Ready to save as: Screen 1",
+      "length": 31
+    },
+    {
+      "timestamp": "2025-07-26T20:38:26.567142",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "📸 Screenshot captured from: Screen 1 (3840x2160)",
+      "length": 48
+    },
+    {
+      "timestamp": "2025-07-26T20:38:31.993613",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "📸 MSS CAPTURE: selected_screen_index = 1",
+      "length": 40
+    },
+    {
+      "timestamp": "2025-07-26T20:38:32.000431",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "   → SCREEN 1: monitor={'left': 0, 'top': 0, 'width': 3840, 'height': 2160}",
+      "length": 75
+    },
+    {
+      "timestamp": "2025-07-26T20:38:32.074495",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "   → PIL conversion: (3840, 2160) pixels",
+      "length": 40
+    },
+    {
+      "timestamp": "2025-07-26T20:38:32.079295",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "   → Ready to save as: Screen 1",
+      "length": 31
+    },
+    {
+      "timestamp": "2025-07-26T20:38:32.487119",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "📸 Screenshot captured from: Screen 1 (3840x2160)",
+      "length": 48
+    },
+    {
+      "timestamp": "2025-07-26T20:38:37.915291",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "📸 MSS CAPTURE: selected_screen_index = 1",
+      "length": 40
+    },
+    {
+      "timestamp": "2025-07-26T20:38:37.921955",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "   → SCREEN 1: monitor={'left': 0, 'top': 0, 'width': 3840, 'height': 2160}",
+      "length": 75
+    },
+    {
+      "timestamp": "2025-07-26T20:38:37.989326",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "   → PIL conversion: (3840, 2160) pixels",
+      "length": 40
+    },
+    {
+      "timestamp": "2025-07-26T20:38:37.994532",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "   → Ready to save as: Screen 1",
+      "length": 31
+    },
+    {
+      "timestamp": "2025-07-26T20:38:38.399946",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "📸 Screenshot captured from: Screen 1 (3840x2160)",
+      "length": 48
+    },
+    {
+      "timestamp": "2025-07-26T20:38:43.840596",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "📸 MSS CAPTURE: selected_screen_index = 1",
+      "length": 40
+    },
+    {
+      "timestamp": "2025-07-26T20:38:43.847767",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "   → SCREEN 1: monitor={'left': 0, 'top': 0, 'width': 3840, 'height': 2160}",
+      "length": 75
+    },
+    {
+      "timestamp": "2025-07-26T20:38:43.923257",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "   → PIL conversion: (3840, 2160) pixels",
+      "length": 40
+    },
+    {
+      "timestamp": "2025-07-26T20:38:43.928896",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "   → Ready to save as: Screen 1",
+      "length": 31
+    },
+    {
+      "timestamp": "2025-07-26T20:38:44.337906",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "📸 Screenshot captured from: Screen 1 (3840x2160)",
+      "length": 48
+    },
+    {
+      "timestamp": "2025-07-26T20:38:49.797621",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "📸 MSS CAPTURE: selected_screen_index = 1",
+      "length": 40
+    },
+    {
+      "timestamp": "2025-07-26T20:38:49.810201",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "   → SCREEN 1: monitor={'left': 0, 'top': 0, 'width': 3840, 'height': 2160}",
+      "length": 75
+    },
+    {
+      "timestamp": "2025-07-26T20:38:49.891478",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "   → PIL conversion: (3840, 2160) pixels",
+      "length": 40
+    },
+    {
+      "timestamp": "2025-07-26T20:38:49.896988",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "   → Ready to save as: Screen 1",
+      "length": 31
+    },
+    {
+      "timestamp": "2025-07-26T20:38:50.302410",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "📸 Screenshot captured from: Screen 1 (3840x2160)",
+      "length": 48
+    },
+    {
+      "timestamp": "2025-07-26T20:38:55.743139",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "📸 MSS CAPTURE: selected_screen_index = 1",
+      "length": 40
+    },
+    {
+      "timestamp": "2025-07-26T20:38:55.749703",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "   → SCREEN 1: monitor={'left': 0, 'top': 0, 'width': 3840, 'height': 2160}",
+      "length": 75
+    },
+    {
+      "timestamp": "2025-07-26T20:38:55.824239",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "   → PIL conversion: (3840, 2160) pixels",
+      "length": 40
+    },
+    {
+      "timestamp": "2025-07-26T20:38:55.830515",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "   → Ready to save as: Screen 1",
+      "length": 31
+    },
+    {
+      "timestamp": "2025-07-26T20:38:56.240945",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "📸 Screenshot captured from: Screen 1 (3840x2160)",
+      "length": 48
+    },
+    {
+      "timestamp": "2025-07-26T20:39:01.675870",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "📸 MSS CAPTURE: selected_screen_index = 1",
+      "length": 40
+    },
+    {
+      "timestamp": "2025-07-26T20:39:01.682031",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "   → SCREEN 1: monitor={'left': 0, 'top': 0, 'width': 3840, 'height': 2160}",
+      "length": 75
+    },
+    {
+      "timestamp": "2025-07-26T20:39:01.766854",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "   → PIL conversion: (3840, 2160) pixels",
+      "length": 40
+    },
+    {
+      "timestamp": "2025-07-26T20:39:01.773059",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "   → Ready to save as: Screen 1",
+      "length": 31
+    },
+    {
+      "timestamp": "2025-07-26T20:39:02.199533",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "📸 Screenshot captured from: Screen 1 (3840x2160)",
+      "length": 48
+    },
+    {
+      "timestamp": "2025-07-26T20:39:02.646396",
+      "type": "vision",
+      "sender": "Vision",
+      "content": "📸 screen_002.png: This screenshot appears to be a composite of multiple windows and panels, likely from a development ...",
+      "length": 121
+    },
+    {
+      "timestamp": "2025-07-26T20:39:07.295636",
+      "type": "vision",
+      "sender": "Vision",
+      "content": "📸 screen_003.png: This screenshot appears to be a desktop environment with multiple open applications and windows, lik...",
+      "length": 121
+    },
+    {
+      "timestamp": "2025-07-26T20:39:07.635042",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "📸 MSS CAPTURE: selected_screen_index = 1",
+      "length": 40
+    },
+    {
+      "timestamp": "2025-07-26T20:39:07.641336",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "   → SCREEN 1: monitor={'left': 0, 'top': 0, 'width': 3840, 'height': 2160}",
+      "length": 75
+    },
+    {
+      "timestamp": "2025-07-26T20:39:07.722459",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "   → PIL conversion: (3840, 2160) pixels",
+      "length": 40
+    },
+    {
+      "timestamp": "2025-07-26T20:39:07.728891",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "   → Ready to save as: Screen 1",
+      "length": 31
+    },
+    {
+      "timestamp": "2025-07-26T20:39:08.143397",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "📸 Screenshot captured from: Screen 1 (3840x2160)",
+      "length": 48
+    },
+    {
+      "timestamp": "2025-07-26T20:39:12.459585",
+      "type": "vision",
+      "sender": "Vision",
+      "content": "📸 screen_001.png: This screenshot appears to be a desktop environment with multiple open applications and windows, lik...",
+      "length": 121
+    },
+    {
+      "timestamp": "2025-07-26T20:39:13.599471",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "📸 MSS CAPTURE: selected_screen_index = 1",
+      "length": 40
+    },
+    {
+      "timestamp": "2025-07-26T20:39:13.605920",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "   → SCREEN 1: monitor={'left': 0, 'top': 0, 'width': 3840, 'height': 2160}",
+      "length": 75
+    },
+    {
+      "timestamp": "2025-07-26T20:39:13.689264",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "   → PIL conversion: (3840, 2160) pixels",
+      "length": 40
+    },
+    {
+      "timestamp": "2025-07-26T20:39:13.695156",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "   → Ready to save as: Screen 1",
+      "length": 31
+    },
+    {
+      "timestamp": "2025-07-26T20:39:14.112710",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "📸 Screenshot captured from: Screen 1 (3840x2160)",
+      "length": 48
+    },
+    {
+      "timestamp": "2025-07-26T20:39:17.786221",
+      "type": "vision",
+      "sender": "Vision",
+      "content": "📸 screen_002.png: This screenshot appears to be a composite of multiple windows and panels, likely from a development ...",
+      "length": 121
+    },
+    {
+      "timestamp": "2025-07-26T20:39:19.571346",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "📸 MSS CAPTURE: selected_screen_index = 1",
+      "length": 40
+    },
+    {
+      "timestamp": "2025-07-26T20:39:19.578885",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "   → SCREEN 1: monitor={'left': 0, 'top': 0, 'width': 3840, 'height': 2160}",
+      "length": 75
+    },
+    {
+      "timestamp": "2025-07-26T20:39:19.655649",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "   → PIL conversion: (3840, 2160) pixels",
+      "length": 40
+    },
+    {
+      "timestamp": "2025-07-26T20:39:19.662427",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "   → Ready to save as: Screen 1",
+      "length": 31
+    },
+    {
+      "timestamp": "2025-07-26T20:39:20.104095",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "📸 Screenshot captured from: Screen 1 (3840x2160)",
+      "length": 48
+    },
+    {
+      "timestamp": "2025-07-26T20:39:20.690530",
+      "type": "vision",
+      "sender": "Vision",
+      "content": "📸 screen_003.png: This screenshot appears to be a composite of multiple applications and interfaces, likely taken from...",
+      "length": 121
+    },
+    {
+      "timestamp": "2025-07-26T20:39:25.526953",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "📸 MSS CAPTURE: selected_screen_index = 1",
+      "length": 40
+    },
+    {
+      "timestamp": "2025-07-26T20:39:25.533437",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "   → SCREEN 1: monitor={'left': 0, 'top': 0, 'width': 3840, 'height': 2160}",
+      "length": 75
+    },
+    {
+      "timestamp": "2025-07-26T20:39:25.605516",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "   → PIL conversion: (3840, 2160) pixels",
+      "length": 40
+    },
+    {
+      "timestamp": "2025-07-26T20:39:25.611991",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "   → Ready to save as: Screen 1",
+      "length": 31
+    },
+    {
+      "timestamp": "2025-07-26T20:39:25.890951",
+      "type": "vision",
+      "sender": "Vision",
+      "content": "📸 screen_001.png: This screenshot appears to be a desktop environment with multiple applications and windows open, lik...",
+      "length": 121
+    },
+    {
+      "timestamp": "2025-07-26T20:39:26.044570",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "📸 Screenshot captured from: Screen 1 (3840x2160)",
+      "length": 48
+    },
+    {
+      "timestamp": "2025-07-26T20:39:28.313112",
+      "type": "vision",
+      "sender": "Vision",
+      "content": "📸 screen_002.png: This screenshot appears to be a workspace setup with multiple applications and tools open, likely fo...",
+      "length": 121
+    },
+    {
+      "timestamp": "2025-07-26T20:39:31.475056",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "📸 MSS CAPTURE: selected_screen_index = 1",
+      "length": 40
+    },
+    {
+      "timestamp": "2025-07-26T20:39:31.480820",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "   → SCREEN 1: monitor={'left': 0, 'top': 0, 'width': 3840, 'height': 2160}",
+      "length": 75
+    },
+    {
+      "timestamp": "2025-07-26T20:39:31.569058",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "   → PIL conversion: (3840, 2160) pixels",
+      "length": 40
+    },
+    {
+      "timestamp": "2025-07-26T20:39:31.575362",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "   → Ready to save as: Screen 1",
+      "length": 31
+    },
+    {
+      "timestamp": "2025-07-26T20:39:32.001689",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "📸 Screenshot captured from: Screen 1 (3840x2160)",
+      "length": 48
+    },
+    {
+      "timestamp": "2025-07-26T20:39:35.590104",
+      "type": "vision",
+      "sender": "Vision",
+      "content": "📸 screen_003.png: This screenshot appears to be a composite of multiple applications and interfaces, likely from a dev...",
+      "length": 121
+    },
+    {
+      "timestamp": "2025-07-26T20:39:37.459039",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "📸 MSS CAPTURE: selected_screen_index = 1",
+      "length": 40
+    },
+    {
+      "timestamp": "2025-07-26T20:39:37.466592",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "   → SCREEN 1: monitor={'left': 0, 'top': 0, 'width': 3840, 'height': 2160}",
+      "length": 75
+    },
+    {
+      "timestamp": "2025-07-26T20:39:37.549982",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "   → PIL conversion: (3840, 2160) pixels",
+      "length": 40
+    },
+    {
+      "timestamp": "2025-07-26T20:39:37.557932",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "   → Ready to save as: Screen 1",
+      "length": 31
+    },
+    {
+      "timestamp": "2025-07-26T20:39:37.982096",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "📸 Screenshot captured from: Screen 1 (3840x2160)",
+      "length": 48
+    },
+    {
+      "timestamp": "2025-07-26T20:39:38.212562",
+      "type": "vision",
+      "sender": "Vision",
+      "content": "📸 screen_001.png: This screenshot appears to be a composite of multiple applications and interfaces, likely from a dev...",
+      "length": 121
+    },
+    {
+      "timestamp": "2025-07-26T20:39:43.412282",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "📸 MSS CAPTURE: selected_screen_index = 1",
+      "length": 40
+    },
+    {
+      "timestamp": "2025-07-26T20:39:43.418715",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "   → SCREEN 1: monitor={'left': 0, 'top': 0, 'width': 3840, 'height': 2160}",
+      "length": 75
+    },
+    {
+      "timestamp": "2025-07-26T20:39:43.488728",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "   → PIL conversion: (3840, 2160) pixels",
+      "length": 40
+    },
+    {
+      "timestamp": "2025-07-26T20:39:43.495125",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "   → Ready to save as: Screen 1",
+      "length": 31
+    },
+    {
+      "timestamp": "2025-07-26T20:39:43.879589",
+      "type": "vision",
+      "sender": "Vision",
+      "content": "📸 screen_002.png: This screenshot appears to be a desktop environment with multiple applications and windows open, lik...",
+      "length": 121
+    },
+    {
+      "timestamp": "2025-07-26T20:39:43.909504",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "📸 Screenshot captured from: Screen 1 (3840x2160)",
+      "length": 48
+    },
+    {
+      "timestamp": "2025-07-26T20:39:47.580698",
+      "type": "vision",
+      "sender": "Vision",
+      "content": "📸 screen_003.png: This screenshot appears to be a desktop environment with multiple applications and windows open, lik...",
+      "length": 121
+    },
+    {
+      "timestamp": "2025-07-26T20:39:49.370175",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "📸 MSS CAPTURE: selected_screen_index = 1",
+      "length": 40
+    },
+    {
+      "timestamp": "2025-07-26T20:39:49.376734",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "   → SCREEN 1: monitor={'left': 0, 'top': 0, 'width': 3840, 'height': 2160}",
+      "length": 75
+    },
+    {
+      "timestamp": "2025-07-26T20:39:49.457299",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "   → PIL conversion: (3840, 2160) pixels",
+      "length": 40
+    },
+    {
+      "timestamp": "2025-07-26T20:39:49.463652",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "   → Ready to save as: Screen 1",
+      "length": 31
+    },
+    {
+      "timestamp": "2025-07-26T20:39:49.879557",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "📸 Screenshot captured from: Screen 1 (3840x2160)",
+      "length": 48
+    },
+    {
+      "timestamp": "2025-07-26T20:39:52.908610",
+      "type": "vision",
+      "sender": "Vision",
+      "content": "📸 screen_001.png: This screenshot appears to be a workspace setup with multiple applications and tools open, likely fo...",
+      "length": 121
+    },
+    {
+      "timestamp": "2025-07-26T20:39:55.327101",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "📸 MSS CAPTURE: selected_screen_index = 1",
+      "length": 40
+    },
+    {
+      "timestamp": "2025-07-26T20:39:55.334777",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "   → SCREEN 1: monitor={'left': 0, 'top': 0, 'width': 3840, 'height': 2160}",
+      "length": 75
+    },
+    {
+      "timestamp": "2025-07-26T20:39:55.420830",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "   → PIL conversion: (3840, 2160) pixels",
+      "length": 40
+    },
+    {
+      "timestamp": "2025-07-26T20:39:55.431064",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "   → Ready to save as: Screen 1",
+      "length": 31
+    },
+    {
+      "timestamp": "2025-07-26T20:39:55.844085",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "📸 Screenshot captured from: Screen 1 (3840x2160)",
+      "length": 48
+    },
+    {
+      "timestamp": "2025-07-26T20:39:56.657303",
+      "type": "vision",
+      "sender": "Vision",
+      "content": "📸 screen_002.png: This screenshot appears to be a desktop environment with multiple applications and windows open, lik...",
+      "length": 121
+    },
+    {
+      "timestamp": "2025-07-26T20:39:58.384811",
+      "type": "system",
+      "sender": "System",
+      "content": "📋 Copied 2050 characters to clipboard",
+      "length": 37
+    },
+    {
+      "timestamp": "2025-07-26T20:40:01.270938",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "📸 MSS CAPTURE: selected_screen_index = 1",
+      "length": 40
+    },
+    {
+      "timestamp": "2025-07-26T20:40:01.277096",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "   → SCREEN 1: monitor={'left': 0, 'top': 0, 'width': 3840, 'height': 2160}",
+      "length": 75
+    },
+    {
+      "timestamp": "2025-07-26T20:40:01.365981",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "   → PIL conversion: (3840, 2160) pixels",
+      "length": 40
+    },
+    {
+      "timestamp": "2025-07-26T20:40:01.372252",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "   → Ready to save as: Screen 1",
+      "length": 31
+    },
+    {
+      "timestamp": "2025-07-26T20:40:01.790063",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "📸 Screenshot captured from: Screen 1 (3840x2160)",
+      "length": 48
+    },
+    {
+      "timestamp": "2025-07-26T20:40:07.204773",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "📸 MSS CAPTURE: selected_screen_index = 1",
+      "length": 40
+    },
+    {
+      "timestamp": "2025-07-26T20:40:07.211015",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "   → SCREEN 1: monitor={'left': 0, 'top': 0, 'width': 3840, 'height': 2160}",
+      "length": 75
+    },
+    {
+      "timestamp": "2025-07-26T20:40:07.293434",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "   → PIL conversion: (3840, 2160) pixels",
+      "length": 40
+    },
+    {
+      "timestamp": "2025-07-26T20:40:07.300191",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "   → Ready to save as: Screen 1",
+      "length": 31
+    },
+    {
+      "timestamp": "2025-07-26T20:40:07.753230",
+      "type": "debug",
+      "sender": "Debug",
+      "content": "📸 Screenshot captured from: Screen 1 (3840x2160)",
+      "length": 48
+    },
+    {
+      "timestamp": "2025-07-26T20:40:09.271649",
+      "type": "system",
+      "sender": "System",
+      "content": "⏹️ Screenshot rotation STOPPED",
+      "length": 30
+    },
+    {
+      "timestamp": "2025-07-26T20:40:09.276792",
+      "type": "system",
+      "sender": "System",
+      "content": "✅ Button is now NORMAL - rotation is INACTIVE!",
+      "length": 46
+    },
+    {
+      "timestamp": "2025-07-26T20:40:27.914296",
+      "type": "error",
+      "sender": "Error",
+      "content": "Processing failed: HTTPConnectionPool(host='localhost', port=11434): Read timed out. (read timeout=30)",
+      "length": 102
+    },
+    {
+      "timestamp": "2025-07-26T20:40:30.803748",
+      "type": "vision",
+      "sender": "Vision",
+      "content": "📸 screen_002.png: This screenshot appears to be a desktop environment with multiple applications and windows open, lik...",
+      "length": 121
+    },
+    {
+      "timestamp": "2025-07-26T20:40:35.113046",
+      "type": "vision",
+      "sender": "Vision",
+      "content": "📸 screen_003.png: This screenshot appears to be a desktop environment with multiple applications and windows open, lik...",
+      "length": 121
+    },
+    {
+      "timestamp": "2025-07-26T20:41:12.077441",
+      "type": "system",
+      "sender": "System",
+      "content": "🧹 CHAT MEMORY COMPLETELY CLEARED!",
+      "length": 33
+    },
+    {
+      "timestamp": "2025-07-26T20:41:12.081642",
+      "type": "system",
+      "sender": "System",
+      "content": "🗑️ Deleted 2050 characters from input",
+      "length": 37
+    },
+    {
+      "timestamp": "2025-07-26T20:41:12.086387",
+      "type": "system",
+      "sender": "System",
+      "content": "💬 All conversation history permanently deleted",
+      "length": 46
+    },
+    {
+      "timestamp": "2025-07-26T20:41:12.095890",
+      "type": "system",
+      "sender": "System",
+      "content": "💾 System memory and vision memory preserved",
+      "length": 43
+    },
+    {
+      "timestamp": "2025-07-26T20:41:12.099017",
+      "type": "system",
+      "sender": "System",
+      "content": "✨ Fresh chat memory ready for new conversations",
+      "length": 47
+    }
+  ]
+}

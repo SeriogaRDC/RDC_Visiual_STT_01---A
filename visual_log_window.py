@@ -20,6 +20,7 @@ class VisualLogWindow:
         self.window = None
         self.auto_refresh_enabled = tk.BooleanVar(value=False)
         self.auto_refresh_timer = None
+        self.total_entries = 0
         
     def show_window(self):
         """Show the visual log window"""
@@ -60,11 +61,28 @@ class VisualLogWindow:
         # Text widget with scrollbar
         self.log_text = tk.Text(log_frame, wrap=tk.WORD, font=("Consolas", 10),
                                bg="#f8f9fa", fg="#2c3e50")
-        scrollbar = ttk.Scrollbar(log_frame, orient="vertical", command=self.log_text.yview)
-        self.log_text.configure(yscrollcommand=scrollbar.set)
+        self.scrollbar = ttk.Scrollbar(log_frame, orient="vertical", command=self.log_text.yview)
+        self.log_text.configure(yscrollcommand=self.on_scroll)
         
         self.log_text.pack(side="left", fill=tk.BOTH, expand=True)
-        scrollbar.pack(side="right", fill="y")
+        self.scrollbar.pack(side="right", fill="y")
+        
+        # Position indicator frame
+        position_frame = ttk.Frame(main_frame)
+        position_frame.pack(fill=tk.X, pady=(5, 0))
+        
+        # Progress bar showing position in text
+        ttk.Label(position_frame, text="Position:").pack(side=tk.LEFT)
+        self.position_progress = ttk.Progressbar(position_frame, mode='determinate', length=200)
+        self.position_progress.pack(side=tk.LEFT, padx=(5, 10), fill=tk.X, expand=True)
+        
+        # Position label showing current position and entry count  
+        self.position_label = ttk.Label(position_frame, text="Top", foreground="blue")
+        self.position_label.pack(side=tk.RIGHT)
+        
+        # Entry count label
+        self.entry_count_label = ttk.Label(position_frame, text="0 entries", foreground="gray")
+        self.entry_count_label.pack(side=tk.RIGHT, padx=(0, 10))
         
         # Control buttons
         button_frame = ttk.Frame(main_frame)
@@ -91,6 +109,38 @@ class VisualLogWindow:
         # Status label
         self.status_label = ttk.Label(main_frame, text="Ready", foreground="green")
         self.status_label.pack(pady=(5, 0))
+    
+    def on_scroll(self, *args):
+        """Handle scroll events to update position indicator"""
+        try:
+            # Update the actual scrollbar first
+            self.scrollbar.set(*args)
+            
+            # Get current scroll position (0.0 to 1.0)
+            if len(args) >= 2:
+                top_fraction = float(args[0])
+                bottom_fraction = float(args[1])
+                
+                # Update progress bar (0 to 100)
+                if hasattr(self, 'position_progress'):
+                    self.position_progress['value'] = top_fraction * 100
+                
+                # Update position label
+                if top_fraction == 0.0:
+                    position_text = "Top"
+                elif bottom_fraction >= 1.0:
+                    position_text = "Bottom"
+                else:
+                    position_text = f"{int(top_fraction * 100)}%"
+                
+                if hasattr(self, 'position_label'):
+                    self.position_label.config(text=position_text)
+                
+        except Exception as e:
+            print(f"Scroll handler error: {e}")
+            # Fallback to basic scrollbar behavior
+            if hasattr(self, 'scrollbar'):
+                self.scrollbar.set(*args)
         
     def refresh_log_display(self):
         """Refresh the log display with latest entries"""
@@ -101,6 +151,7 @@ class VisualLogWindow:
                 self.log_text.insert(tk.END, "No visual log file found.\n")
                 self.log_text.insert(tk.END, f"Expected path: {self.log_file_path}\n")
                 self.status_label.config(text="No log file", foreground="orange")
+                self.entry_count_label.config(text="0 entries")
                 return
             
             # Load and display log entries
@@ -108,13 +159,19 @@ class VisualLogWindow:
                 log_data = json.load(f)
             
             entries = log_data.get('entries', [])
+            self.total_entries = len(entries)
             
             if not entries:
                 self.log_text.insert(tk.END, "No log entries found.\n")
                 self.status_label.config(text="Empty log", foreground="orange")
+                self.entry_count_label.config(text="0 entries")
                 return
             
+            # Update entry count display
+            self.entry_count_label.config(text=f"{self.total_entries} entries")
+            
             # Display entries (most recent first)
+            entries_to_show = min(len(entries), 50)
             for i, entry in enumerate(reversed(entries[-50:])):  # Show last 50 entries
                 timestamp = entry.get('timestamp', 'Unknown time')
                 interpretation = entry.get('interpreted_text', entry.get('interpretation', 'No interpretation'))
@@ -125,16 +182,21 @@ class VisualLogWindow:
                 self.log_text.insert(tk.END, f"📸 File: {screenshot_file}\n")
                 self.log_text.insert(tk.END, f"🔍 Interpretation:\n{interpretation}\n\n")
             
-            self.status_label.config(text=f"Showing {min(len(entries), 50)} entries", 
+            self.status_label.config(text=f"Showing {entries_to_show} of {self.total_entries} entries", 
                                    foreground="green")
             
             # Auto-scroll to top (most recent)
             self.log_text.see(1.0)
             
+            # Reset position indicator
+            self.position_progress['value'] = 0
+            self.position_label.config(text="Top")
+            
         except Exception as e:
             self.log_text.delete(1.0, tk.END)
             self.log_text.insert(tk.END, f"Error loading log: {e}\n")
             self.status_label.config(text="Error loading", foreground="red")
+            self.entry_count_label.config(text="0 entries")
     
     def clear_log(self):
         """Clear the visual log file"""

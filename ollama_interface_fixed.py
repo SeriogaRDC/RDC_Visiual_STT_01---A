@@ -48,7 +48,7 @@ class OllamaInterface:
         
         # Screenshot rotation system
         self.screenshots_dir = os.path.join(os.path.dirname(__file__), "screenshots")
-        self.vision_log_file = os.path.join(os.path.dirname(__file__), "vision_log.json")
+        self.vision_memory_file = os.path.join(os.path.dirname(__file__), "vision_memory.json")
         self.rotation_active = False
         self.rotation_interval = 5  # Default 5 seconds
         self.max_screenshots = 3
@@ -94,6 +94,7 @@ class OllamaInterface:
         
         # Keyword activation system - DEFAULT ON since user said it should be
         self.keyword_activation_enabled = tk.BooleanVar(value=True)
+        self.include_keyword_in_message = tk.BooleanVar(value=False)  # Default OFF - strip keywords from sent messages
         self.trigger_keywords = [
             "I'm done talking"
         ]
@@ -120,6 +121,20 @@ class OllamaInterface:
         # AUTO-CLEANUP - Prevent text accumulation sluggishness
         self.auto_cleanup_enabled = tk.BooleanVar(value=False)
         self.max_text_length = 2000  # Auto-clean when text exceeds this
+        
+        # FOCUS RESTORATION SYSTEM 2.0 - SMART GAMING FOCUS GUARD!
+        self.focus_restoration_enabled = tk.BooleanVar(value=False)
+        self.focus_restoration_interval = 6.0  # Every 6 seconds (gentler - was 3s)
+        self.focus_restoration_timer = None
+        self.last_focus_time = 0
+        self.focus_attempts = 0
+        
+        # SMART FOCUS DETECTION - Only restore when actually needed!
+        self.focus_check_enabled = True  # Smart detection vs blind restoration
+        self.focus_lost_time = 0  # Track when we lost focus
+        self.focus_grace_period = 2.0  # Wait 2s before attempting restoration
+        self.user_activity_time = 0  # Track user activity to pause restoration
+        self.gaming_mode_active = tk.BooleanVar(value=False)  # Gaming mode detection
         
         # Speech accumulation buffer for stable delivery - ULTRA RESPONSIVE APPROACH!
         self.speech_buffer = ""
@@ -150,11 +165,14 @@ class OllamaInterface:
         self.model_chat_history_file = os.path.join(os.path.dirname(__file__), "model_chat_history.json")
         self.model_chat_history = []
         
-        # CHAT MEMORY SYSTEM - Preserve all conversations and input text
-        self.chat_memory_file = os.path.join(os.path.dirname(__file__), "chat_memory.json")
-        self.chat_memory = []  # List of all messages and interactions
-        self.input_memory_file = os.path.join(os.path.dirname(__file__), "input_memory.json") 
-        self.input_memory = []  # List of all input text history
+        # MEMORY SYSTEM - UNIFIED ARCHITECTURE!
+        self.system_memory_file = os.path.join(os.path.dirname(__file__), "system_memory.json")
+        self.system_memory = []  # List of all system messages and debug info
+        self.chat_memory_file = os.path.join(os.path.dirname(__file__), "chat_memory.json") 
+        self.chat_memory = []  # List of all user conversations and input text
+        
+        # Visual memory system
+        self.vision_memory_file = os.path.join(os.path.dirname(__file__), "vision_memory.json")
         
         # Ensure screenshots directory exists
         os.makedirs(self.screenshots_dir, exist_ok=True)
@@ -166,9 +184,9 @@ class OllamaInterface:
         # Detect available screens
         self.detect_screens()
         
-        # Load memory systems
+        # Load unified memory systems
+        self.load_system_memory()
         self.load_chat_memory()
-        self.load_input_memory()
         
         # Add initial instructions
         self.add_initial_instructions()
@@ -248,7 +266,13 @@ class OllamaInterface:
         self.keyword_activation_check = ttk.Checkbutton(window_frame, text="🎯 Keyword Activation", 
                                                        variable=self.keyword_activation_enabled,
                                                        command=self.on_keyword_activation_toggled)
-        self.keyword_activation_check.grid(row=3, column=0, columnspan=3, sticky=tk.W, pady=(2, 0))
+        self.keyword_activation_check.grid(row=3, column=0, columnspan=2, sticky=tk.W, pady=(2, 0))
+        
+        # Include keyword in message toggle (same row, right side)
+        self.include_keyword_check = ttk.Checkbutton(window_frame, text="📝 Include Keyword", 
+                                                    variable=self.include_keyword_in_message,
+                                                    command=self.on_include_keyword_toggled)
+        self.include_keyword_check.grid(row=3, column=2, sticky=tk.W, pady=(2, 0), padx=(10, 0))
         
         # Silence activation frame (row 3.5, new row)
         silence_frame = ttk.Frame(window_frame)
@@ -460,6 +484,18 @@ class OllamaInterface:
         self.connection_test_button = ttk.Button(secondary_buttons_frame, text="🔗 Test Connection", command=self.test_window_connection, width=15)
         self.connection_test_button.grid(row=3, column=2, padx=(0, 5), pady=(5, 0))
         
+        # Row 5 - GAMING SUPPORT FEATURES! 
+        self.focus_restoration_button = ttk.Button(secondary_buttons_frame, text="🎯 Focus Guard: OFF", command=self.toggle_focus_restoration, width=15)
+        self.focus_restoration_button.grid(row=4, column=0, padx=(0, 5), pady=(5, 0))
+        
+        # Gaming Mode Toggle - Extra protection for gaming sessions
+        self.gaming_mode_button = ttk.Button(secondary_buttons_frame, text="🎮 Gaming Mode: OFF", command=self.toggle_gaming_mode, width=15)
+        self.gaming_mode_button.grid(row=4, column=1, padx=(0, 5), pady=(5, 0))
+        
+        # Smart Focus Toggle - Enable/disable intelligent focus detection
+        self.smart_focus_button = ttk.Button(secondary_buttons_frame, text="🧠 Smart Focus: ON", command=self.toggle_smart_focus, width=15)
+        self.smart_focus_button.grid(row=4, column=2, padx=(0, 5), pady=(5, 0))
+        
         # Configure right frame grid
         right_frame.columnconfigure(0, weight=1)
         right_frame.rowconfigure(0, weight=1)  # Input area gets most space
@@ -476,7 +512,7 @@ class OllamaInterface:
         self.reconnect_button.grid(row=0, column=1, padx=(0, 5))
         
         # Screenshot rotation controls
-        self.rotation_button = ttk.Button(button_frame, text="Start Rotation", command=self.toggle_rotation)
+        self.rotation_button = ttk.Button(button_frame, text="▶️ START Rotation", command=self.toggle_rotation)
         self.rotation_button.grid(row=0, column=2, padx=(0, 5))
         
         # Screen selector frame
@@ -681,6 +717,19 @@ class OllamaInterface:
         except Exception as e:
             self.add_chat_message("Error", f"Keyword toggle error: {e}")
     
+    def on_include_keyword_toggled(self):
+        """Handle include keyword in message toggle"""
+        try:
+            if self.include_keyword_in_message.get():
+                self.add_chat_message("System", "📝 Keywords will be INCLUDED in sent messages")
+                self.add_chat_message("System", "💬 Example: 'Hello there I'm done talking' → sends full text")
+            else:
+                self.add_chat_message("System", "📝 Keywords will be STRIPPED from sent messages")
+                self.add_chat_message("System", "💬 Example: 'Hello there I'm done talking' → sends only 'Hello there'")
+                
+        except Exception as e:
+            self.add_chat_message("Error", f"Include keyword toggle error: {e}")
+    
     def on_silence_activation_toggled(self):
         """Handle silence activation toggle - RESET TIMER LOGIC"""
         try:
@@ -799,6 +848,176 @@ class OllamaInterface:
                 
         except Exception as e:
             self.add_chat_message("Error", f"Auto-cleanup toggle error: {e}")
+    
+    def toggle_focus_restoration(self):
+        """Toggle focus restoration system - PERFECT for gaming!"""
+        try:
+            self.focus_restoration_enabled.set(not self.focus_restoration_enabled.get())
+            
+            if self.focus_restoration_enabled.get():
+                self.focus_restoration_button.config(text="🎯 Focus Guard: ON", style="ToggleActive.TButton")
+                self.add_chat_message("System", "🎯 FOCUS RESTORATION ENABLED!")
+                self.add_chat_message("System", f"⏰ Every {self.focus_restoration_interval}s → gently restore target window focus")
+                self.add_chat_message("System", "🎮 PERFECT for gaming - keeps your target window active!")
+                self.start_focus_restoration_timer()
+            else:
+                self.focus_restoration_button.config(text="🎯 Focus Guard: OFF", style="Enhanced.Accent.TButton")
+                self.add_chat_message("System", "🎯 Focus restoration disabled")
+                self.stop_focus_restoration_timer()
+                
+        except Exception as e:
+            self.add_chat_message("Error", f"Focus restoration toggle error: {e}")
+    
+    def toggle_gaming_mode(self):
+        """Toggle Gaming Mode - Extra gentle focus protection during gaming"""
+        try:
+            self.gaming_mode_active.set(not self.gaming_mode_active.get())
+            
+            if self.gaming_mode_active.get():
+                self.gaming_mode_button.config(text="🎮 Gaming Mode: ON", style="ToggleActive.TButton")
+                self.add_chat_message("System", "🎮 GAMING MODE ACTIVATED!")
+                self.add_chat_message("System", "🛡️ Extra protection: 4-second grace period before focus restoration")
+                self.add_chat_message("System", "🎯 Focus Guard will be extra gentle during gaming sessions")
+            else:
+                self.gaming_mode_button.config(text="🎮 Gaming Mode: OFF", style="Enhanced.Accent.TButton")
+                self.add_chat_message("System", "🎮 Gaming mode disabled - normal focus timing")
+                
+        except Exception as e:
+            self.add_chat_message("Error", f"Gaming mode toggle error: {e}")
+    
+    def toggle_smart_focus(self):
+        """Toggle Smart Focus detection - Intelligent vs blind restoration"""
+        try:
+            self.focus_check_enabled = not self.focus_check_enabled
+            
+            if self.focus_check_enabled:
+                self.smart_focus_button.config(text="🧠 Smart Focus: ON", style="ToggleActive.TButton")
+                self.add_chat_message("System", "🧠 SMART FOCUS ENABLED!")
+                self.add_chat_message("System", "🔍 Will check if focus is actually lost before restoring")
+                self.add_chat_message("System", "💡 Prevents unnecessary interruptions during gaming")
+            else:
+                self.smart_focus_button.config(text="🔍 Blind Focus: ON", style="Enhanced.Accent.TButton")
+                self.add_chat_message("System", "🔍 Blind focus mode - will restore every interval regardless")
+                self.add_chat_message("System", "⚠️ More aggressive but less intelligent")
+                
+        except Exception as e:
+            self.add_chat_message("Error", f"Smart focus toggle error: {e}")
+    
+    def start_focus_restoration_timer(self):
+        """Start SMART periodic focus restoration - only when needed!"""
+        try:
+            if self.focus_restoration_enabled.get() and self.direct_output_enabled.get():
+                # Only restore focus if we have a target window
+                if self.selected_window_handle:
+                    # SMART CHECK: Only restore if focus is actually lost
+                    if self.focus_check_enabled:
+                        self.smart_focus_check_and_restore()
+                    else:
+                        self.restore_target_window_focus()
+                
+                # Schedule next check (gentler 6-second interval)
+                self.focus_restoration_timer = self.root.after(
+                    int(self.focus_restoration_interval * 1000),
+                    self.start_focus_restoration_timer
+                )
+        except Exception as e:
+            self.add_chat_message("Error", f"Smart focus timer error: {e}")
+    
+    def smart_focus_check_and_restore(self):
+        """SMART focus detection - only restore when actually needed!"""
+        try:
+            if not self.selected_window_handle:
+                return
+                
+            # Check if our target window is currently active
+            current_window = win32gui.GetForegroundWindow()
+            
+            if current_window == self.selected_window_handle:
+                # Target window is active - no need to restore!
+                return
+            
+            # Check for user activity - don't interrupt typing/gaming
+            current_time = time.time()
+            if current_time - self.user_activity_time < 1.0:  # 1 second grace period
+                return
+                
+            # Check gaming mode - be extra careful
+            if self.gaming_mode_active.get():
+                # In gaming mode, wait longer before restoring
+                if current_time - self.focus_lost_time < self.focus_grace_period * 2:  # 4 seconds
+                    return
+            else:
+                # Normal mode - shorter grace period
+                if current_time - self.focus_lost_time < self.focus_grace_period:  # 2 seconds
+                    return
+            
+            # OK to restore focus now
+            self.restore_target_window_focus()
+            
+        except Exception as e:
+            # Silent fail - don't spam during gaming
+            pass
+    
+    def stop_focus_restoration_timer(self):
+        """Stop focus restoration timer"""
+        try:
+            if self.focus_restoration_timer:
+                self.root.after_cancel(self.focus_restoration_timer)
+                self.focus_restoration_timer = None
+        except Exception as e:
+            self.add_chat_message("Error", f"Focus timer stop error: {e}")
+    
+    def restore_target_window_focus(self):
+        """SMART focus restoration with message protection - GAMING FRIENDLY 2.0"""
+        try:
+            if not self.selected_window_handle:
+                return
+                
+            # Check if target window still exists
+            try:
+                window_title = win32gui.GetWindowText(self.selected_window_handle)
+            except:
+                self.add_chat_message("System", "⚠️ Target window lost - focus restoration paused")
+                return
+            
+            # MESSAGE PROTECTION: Don't restore during active typing/sending
+            current_time = time.time()
+            if hasattr(self, 'last_message_time') and current_time - self.last_message_time < 3.0:
+                # User was typing/sending recently - skip restoration
+                return
+            
+            # SMART RESTORATION: Check if window is actually unfocused first
+            current_foreground = win32gui.GetForegroundWindow()
+            if current_foreground == self.selected_window_handle:
+                # Already focused - no need to restore
+                return
+            
+            # Gentle focus restoration - don't be aggressive
+            try:
+                # Update focus lost tracking
+                if not hasattr(self, 'focus_lost_time') or self.focus_lost_time == 0:
+                    self.focus_lost_time = current_time
+                
+                # Bring window to front gently
+                win32gui.ShowWindow(self.selected_window_handle, win32con.SW_RESTORE)
+                win32gui.SetForegroundWindow(self.selected_window_handle)
+                
+                self.focus_attempts += 1
+                
+                # Only log occasionally to avoid spam (every 15 seconds now)
+                if current_time - self.last_focus_time > 15:  # Less frequent logging
+                    self.add_chat_message("System", f"🎯 Smart Focus restored to: {window_title[:30]}... (#{self.focus_attempts})")
+                    self.last_focus_time = current_time
+                
+                # Reset focus lost time after successful restoration
+                self.focus_lost_time = 0
+                    
+            except Exception as e:
+                # Silently fail - don't spam errors during gaming
+                pass
+                
+        except Exception as e:
+            self.add_chat_message("Error", f"Smart focus restoration error: {e}")
     
     def start_auto_silence_timer(self):
         """Start the 10-second auto-silence detection timer with VISUAL COUNTDOWN - ONLY for accumulation mode"""
@@ -1896,11 +2115,47 @@ class OllamaInterface:
         self.chat_text.tag_add(tk.SEL, "1.0", tk.END)
         
     def clear_chat(self):
-        """Clear the screen display and optionally memory"""
-        self.chat_text.delete(1.0, tk.END)
-        self.add_chat_message("System", "🧹 Screen display cleared")
-        self.add_chat_message("System", "💾 Memory files preserved (chat_memory.json, input_memory.json)")
-        self.add_chat_message("System", "⚠️ To clear ALL memory permanently, use a dedicated 'Clean Memory' button")
+        """Clear screen display AND system memory with confirmation dialog"""
+        from tkinter import messagebox
+        
+        # Show confirmation dialog
+        result = messagebox.askyesno(
+            "Clear System Memory", 
+            "🚨 DANGER ZONE 🚨\n\n"
+            "This will permanently delete:\n"
+            "• All system logs and debug messages\n"
+            "• All technical memory (system_memory.json)\n"
+            "• Screen display content\n\n"
+            "⚠️ This action cannot be undone!\n\n"
+            "Are you sure you want to continue?",
+            icon='warning'
+        )
+        
+        if not result:
+            self.add_chat_message("System", "❌ System memory clearing cancelled by user")
+            return
+        
+        try:
+            # Clear screen display
+            self.chat_text.delete(1.0, tk.END)
+            
+            # Clear system memory completely
+            self.system_memory = []
+            empty_system = {
+                "total_entries": 0, 
+                "last_updated": datetime.now().isoformat(), 
+                "entries": []
+            }
+            with open(self.system_memory_file, 'w', encoding='utf-8') as f:
+                json.dump(empty_system, f, indent=2, ensure_ascii=False)
+            
+            self.add_chat_message("System", "🧹 SYSTEM MEMORY COMPLETELY CLEARED!")
+            self.add_chat_message("System", "🗑️ All system logs and debug data permanently deleted")
+            self.add_chat_message("System", "💾 Chat memory and vision memory preserved")
+            self.add_chat_message("System", "✨ Fresh system memory ready for new logs")
+            
+        except Exception as e:
+            self.add_chat_message("Error", f"System memory clearing error: {e}")
         
     def launch_test_window(self):
         """Launch the test target window for debugging"""
@@ -1918,7 +2173,7 @@ class OllamaInterface:
         """Show the visual log window"""
         try:
             if self.visual_log_window is None:
-                self.visual_log_window = VisualLogWindow(self, self.vision_log_file)
+                self.visual_log_window = VisualLogWindow(self, self.vision_memory_file)
             
             self.visual_log_window.show_window()
             self.add_chat_message("System", "📋 Visual log window opened")
@@ -1933,7 +2188,7 @@ class OllamaInterface:
             empty_log = {"entries": []}
             
             # Write to file
-            with open(self.vision_log_file, 'w', encoding='utf-8') as f:
+            with open(self.vision_memory_file, 'w', encoding='utf-8') as f:
                 json.dump(empty_log, f, indent=2, ensure_ascii=False)
             
             self.add_chat_message("System", "🧹 Visual log cleaned! Fresh start ready.")
@@ -2121,8 +2376,8 @@ class OllamaInterface:
     def get_latest_visual_context(self):
         """Get the latest visual context from vision log"""
         try:
-            if os.path.exists(self.vision_log_file):
-                with open(self.vision_log_file, 'r', encoding='utf-8') as f:
+            if os.path.exists(self.vision_memory_file):
+                with open(self.vision_memory_file, 'r', encoding='utf-8') as f:
                     data = json.load(f)
                     entries = data.get('entries', [])
                     if entries:
@@ -2141,10 +2396,10 @@ class OllamaInterface:
     def get_simple_visual_context(self):
         """Simply get the latest visual interpretation from JSON log"""
         try:
-            if not os.path.exists(self.vision_log_file):
+            if not os.path.exists(self.vision_memory_file):
                 return None
                 
-            with open(self.vision_log_file, 'r', encoding='utf-8') as f:
+            with open(self.vision_memory_file, 'r', encoding='utf-8') as f:
                 log_data = json.load(f)
                 
             entries = log_data.get('entries', [])
@@ -2182,8 +2437,8 @@ class OllamaInterface:
             # Try to get interpretation from vision log
             interpretation = None
             try:
-                if os.path.exists(self.vision_log_file):
-                    with open(self.vision_log_file, 'r', encoding='utf-8') as f:
+                if os.path.exists(self.vision_memory_file):
+                    with open(self.vision_memory_file, 'r', encoding='utf-8') as f:
                         log_data = json.load(f)
                     
                     # Find interpretation for this screenshot
@@ -2492,22 +2747,29 @@ class OllamaInterface:
             return False
 
     def add_chat_message(self, sender: str, message: str):
-        """Add message to chat area and save to memory"""
+        """Add message to chat area and save to SYSTEM memory (debug/technical logs)"""
         self.chat_text.insert(tk.END, f"{sender}: {message}\n")
         self.chat_text.see(tk.END)
         
-        # AUTOMATICALLY SAVE TO MEMORY SYSTEM
+        # SAVE TO SYSTEM MEMORY (technical/debug logs)
         try:
             message_type = sender.lower()
-            self.save_chat_memory(message_type, sender, message)
+            self.save_system_memory(message_type, sender, message)
         except Exception as e:
-            print(f"Memory save error in add_chat_message: {e}")
+            print(f"System memory save error in add_chat_message: {e}")
         
     def add_initial_instructions(self):
         """Add initial instructions to the chat"""
-        self.add_chat_message("System", "🎯 Visual Interpretation System v2.0 - SPEECH KEYWORD ACTIVATION!")
+        self.add_chat_message("System", "🎯 Visual Interpretation System v2.0 - UNIFIED MEMORY ARCHITECTURE!")
         self.add_chat_message("System", "")
-        self.add_chat_message("System", "✨ New Features:")
+        self.add_chat_message("System", "🔥 NEW MEMORY SYSTEM:")
+        self.add_chat_message("System", "�️ System Memory: Debug/technical logs (system_memory.json)")
+        self.add_chat_message("System", "💬 Chat Memory: Your conversations & voice (chat_memory.json)")
+        self.add_chat_message("System", "�️ Vision Memory: Screenshot analysis (vision_memory.json)")
+        self.add_chat_message("System", "📝 Vision Text & 📸 Vision Image now work IDENTICALLY!")
+        self.add_chat_message("System", "✂️ Text accumulates with separators - grab any previous content!")
+        self.add_chat_message("System", "")
+        self.add_chat_message("System", "✨ Features:")
         self.add_chat_message("System", "📥 Window Selection: Choose any open window as output target")
         self.add_chat_message("System", "📤 Unified Message Delivery: Complete payload with visual data")
         self.add_chat_message("System", "🖼️ Full Visual Interpretation: Comprehensive screenshot analysis")
@@ -2548,7 +2810,7 @@ class OllamaInterface:
         self.add_chat_message("System", "📸 Screenshot System:")
         self.add_chat_message("System", "• Select interval (3s/5s/10s) and click 'Start Rotation'")
         self.add_chat_message("System", "• AI will continuously interpret your screen")
-        self.add_chat_message("System", "• Everything logged to vision_log.json")
+        self.add_chat_message("System", "• Everything logged to vision_memory.json")
         self.add_chat_message("System", "")
         self.add_chat_message("System", "🎬 ULTIMATE HANDS-FREE EXPERIENCE:")
         self.add_chat_message("System", "• Start speech listening + screenshot rotation")
@@ -2558,112 +2820,30 @@ class OllamaInterface:
         self.add_chat_message("System", "")
         
     def send_message(self, event=None):
-        """Send message to selected model or redirect to target window - SEGMENTED SENDS ONLY!"""
+        """Send message to selected model or redirect to target window - UNIFIED MEMORY SYSTEM!"""
         try:
-            vision_mode = self.vision_mode.get()
-            if vision_mode == "Vision Image":
-                def send_picture_and_text():
-                    import io
-                    import win32clipboard
-                    from PIL import ImageGrab
-                    message = self.get_new_message_segment().strip()
-                    if not message:
-                        self.add_chat_message("System", "⚠️ No new content to send since last message")
-                        return
-                    if self.include_visual_context.get():
-                        # Take screenshot and copy to clipboard as image
-                        screenshot = ImageGrab.grab()
-                        output = io.BytesIO()
-                        screenshot.save(output, 'BMP')
-                        data = output.getvalue()[14:]
-                        output.close()
-                        try:
-                            win32clipboard.OpenClipboard()
-                            win32clipboard.EmptyClipboard()
-                            win32clipboard.SetClipboardData(win32clipboard.CF_DIB, data)
-                            win32clipboard.CloseClipboard()
-                            self.add_chat_message("System", "🖼️ Screenshot taken and copied to clipboard.")
-                        except Exception as e:
-                            self.add_chat_message("Error", f"❌ Failed to copy screenshot to clipboard: {e}")
-                            return
-                        # Paste image into target window, then paste text, then press Enter
-                        if self.direct_output_enabled.get() and self.selected_window_handle:
-                            try:
-                                # Focus window and paste screenshot
-                                app = None
-                                try:
-                                    import pywinauto
-                                    app = pywinauto.Application().connect(handle=self.selected_window_handle)
-                                    win = app.window(handle=self.selected_window_handle)
-                                    win.set_focus()
-                                except Exception:
-                                    import win32gui
-                                    win32gui.SetForegroundWindow(self.selected_window_handle)
-                                import time as _time
-                                _time.sleep(0.5)
-                                import pyautogui
-                                pyautogui.hotkey('ctrl', 'v')
-                                self.add_chat_message("System", "🖼️ Screenshot pasted to selected window.")
-                                # Wait for screenshot to appear
-                                _time.sleep(2.5)
-                                # Now copy text to clipboard and paste it
-                                import pyperclip
-                                original_message = self.get_new_message_segment().strip()
-                                pyperclip.copy(original_message)
-                                pyautogui.hotkey('ctrl', 'v')
-                                self.add_chat_message("System", "💬 Text pasted after screenshot.")
-                                # Wait a fixed 5 seconds in Vision Image mode before pressing Enter
-                                if self.auto_press_enter.get():
-                                    if self.vision_mode.get() == "Vision Image":
-                                        _time.sleep(5.0)
-                                        pyautogui.press('enter')
-                                        self.add_chat_message("Debug", f"✅ Auto-Enter pressed after 5s buffer (Vision Image)")
-                                    else:
-                                        _time.sleep(0.7)
-                                        pyautogui.press('enter')
-                            except Exception as e:
-                                self.add_chat_message("Error", f"Failed to send screenshot/text: {e}")
-                                return
-                        # Wait before continuing logic
-                        time.sleep(0.5)
-                    # Now log/send the text message (for chat/memory only, not to window again)
-                    original_message = message
-                    self.add_chat_message("System", f"📤 Sending NEW segment: {len(message)} characters")
-                    try:
-                        self.save_input_memory(original_message, "send")
-                    except Exception as e:
-                        self.add_chat_message("Debug", f"Memory save failed: {e}")
-                    try:
-                        if original_message not in self.message_history:
-                            self.message_history.append(original_message)
-                        if len(self.message_history) > 50:
-                            self.message_history.pop(0)
-                        self.history_index = -1
-                    except Exception as e:
-                        self.add_chat_message("Debug", f"History update failed: {e}")
-                    try:
-                        self.mark_message_as_sent(original_message)
-                    except Exception as e:
-                        self.add_chat_message("Debug", f"Send marking failed: {e}")
-                    self.add_chat_message("You", original_message)
-                    self.clear_message_input()
-                threading.Thread(target=send_picture_and_text, daemon=True).start()
-                return
-            # Otherwise, Vision Text mode (original logic)
-            # ...existing code...
+            # SMART FOCUS PROTECTION: Track message activity to prevent interruptions
+            import time
+            self.last_message_time = time.time()
+            self.user_activity_time = time.time()  # Update user activity
+            
+            # UNIFIED LOGIC: Both Vision Text and Vision Image use SAME memory flow!
             # GET ONLY NEW MESSAGE SEGMENT - not the whole text block!
             message = self.get_new_message_segment().strip()
             if not message:
                 self.add_chat_message("System", "⚠️ No new content to send since last message")
                 return
+            
             # Store the NEW segment being sent
             original_message = message
             self.add_chat_message("System", f"📤 Sending NEW segment: {len(message)} characters")
-            # SAVE TO INPUT MEMORY SYSTEM (with error handling)
+            
+            # SAVE TO CHAT MEMORY SYSTEM (with error handling)
             try:
-                self.save_input_memory(original_message, "send")
+                self.save_chat_memory(original_message, "send")
             except Exception as e:
                 self.add_chat_message("Debug", f"Memory save failed: {e}")
+            
             # Add to message history for up/down arrow navigation
             try:
                 if original_message not in self.message_history:
@@ -2673,92 +2853,161 @@ class OllamaInterface:
                 self.history_index = -1
             except Exception as e:
                 self.add_chat_message("Debug", f"History update failed: {e}")
-            # MARK THIS SEGMENT AS SENT - adds separator for next message
+            
+            # MARK THIS SEGMENT AS SENT - adds separator for next message (SAME FOR BOTH MODES!)
             try:
                 self.mark_message_as_sent(original_message)
             except Exception as e:
                 self.add_chat_message("Debug", f"Send marking failed: {e}")
-            # Add user message to chat (show what user typed)
+            
+            # Add user message to chat (show what user typed) - UNIFIED MEMORY SAVE!
             self.add_chat_message("You", original_message)
-            # SIMPLE VISUAL ATTACHMENT - ONLY for the NEW message segment
-            if self.include_visual_context.get():
-                try:
-                    if os.path.exists(self.vision_log_file):
-                        with open(self.vision_log_file, 'r', encoding='utf-8') as f:
-                            log_data = json.load(f)
-                        entries = log_data.get('entries', [])
-                        if entries:
-                            latest = entries[-1]
-                            visual_text = latest.get('interpreted_text', '')
-                            if visual_text:
-                                message = f"""Based on this visual context from my screen: I can see {visual_text}\n\nPlease respond to my NEW message: {original_message}\n\nUse the visual context to provide a more informed and relevant response."""
-                                self.add_chat_message("Info", "✅ Visual context attached to NEW message segment")
-                            else:
-                                self.add_chat_message("Info", "⚠️ No visual interpretation found")
-                        else:
-                            self.add_chat_message("Info", "⚠️ No visual entries - start screenshot rotation")
-                    else:
-                        self.add_chat_message("Info", "⚠️ No vision log found - start screenshot rotation")
-                except Exception as e:
-                    self.add_chat_message("Error", f"Visual context error: {e}")
-            self.root.title("Visual Interpretation System v1.0")
-            if self.direct_output_enabled.get():
-                if self.selected_window_handle:
-                    final_message = original_message
-                    if self.include_visual_context.get():
-                        visual_context = self.get_simple_visual_context()
-                        if visual_context:
-                            final_message += f"\n\n[Visual Context: {visual_context}]"
-                    success = self.send_direct_to_window(final_message)
-                    if success:
-                        self.add_chat_message("System", "✅ NEW message segment sent to target window")
-                    else:
-                        self.add_chat_message("Error", "Failed to deliver message segment")
-                    return
-                else:
-                    self.add_chat_message("Error", "No target window selected for direct output")
-                    return
-            if not self.connected:
-                self.add_chat_message("Error", "Not connected to Ollama. Please check connection.")
+            
+            # MODE-SPECIFIC DELIVERY: Handle Vision Image vs Vision Text delivery
+            vision_mode = self.vision_mode.get()
+            if vision_mode == "Vision Image":
+                # Vision Image mode: Screenshot + Text delivery in separate thread
+                def send_picture_and_text():
+                    try:
+                        if self.include_visual_context.get():
+                            import io
+                            import win32clipboard
+                            from PIL import ImageGrab
+                            
+                            # Take screenshot and copy to clipboard as image
+                            screenshot = ImageGrab.grab()
+                            output = io.BytesIO()
+                            screenshot.save(output, 'BMP')
+                            data = output.getvalue()[14:]
+                            output.close()
+                            
+                            try:
+                                win32clipboard.OpenClipboard()
+                                win32clipboard.EmptyClipboard()
+                                win32clipboard.SetClipboardData(win32clipboard.CF_DIB, data)
+                                win32clipboard.CloseClipboard()
+                                self.add_chat_message("System", "🖼️ Screenshot copied to clipboard")
+                            except Exception as e:
+                                self.add_chat_message("Error", f"❌ Screenshot clipboard failed: {e}")
+                                return
+                            
+                            # Paste image + text to target window if Direct Output enabled
+                            if self.direct_output_enabled.get() and self.selected_window_handle:
+                                try:
+                                    # Focus target window
+                                    import win32gui, pyautogui, pyperclip
+                                    win32gui.SetForegroundWindow(self.selected_window_handle)
+                                    time.sleep(0.5)
+                                    
+                                    # Paste screenshot first
+                                    pyautogui.hotkey('ctrl', 'v')
+                                    self.add_chat_message("System", "🖼️ Screenshot pasted to target window")
+                                    time.sleep(2.5)  # Wait for image upload
+                                    
+                                    # Then paste text
+                                    pyperclip.copy(original_message)
+                                    pyautogui.hotkey('ctrl', 'v')
+                                    self.add_chat_message("System", "� Text pasted after screenshot")
+                                    
+                                    # Auto-press Enter if enabled
+                                    if self.auto_press_enter.get():
+                                        time.sleep(5.0)  # Extra wait for Vision Image
+                                        pyautogui.press('enter')
+                                        self.add_chat_message("System", "✅ Auto-Enter pressed (Vision Image)")
+                                        
+                                except Exception as e:
+                                    self.add_chat_message("Error", f"Failed to deliver screenshot/text: {e}")
+                    except Exception as e:
+                        self.add_chat_message("Error", f"Vision Image delivery error: {e}")
+                
+                # Run screenshot delivery in background thread
+                threading.Thread(target=send_picture_and_text, daemon=True).start()
+                # DON'T clear input - Vision Image now works like Vision Text!
                 return
-            if not self.selected_model.get():
-                self.add_chat_message("Error", "No model selected. Please select a model first.")
-                return
-            self.send_button.config(state='disabled', text="Sending...")
-            self.root.update()
-            response = requests.post(
-                f"{self.ollama_url}/api/generate",
-                json={
-                    "model": self.selected_model.get(),
-                    "prompt": message,
-                    "stream": False
-                },
-                timeout=30,
-                headers={"Content-Type": "application/json"}
-            )
-            if response.status_code == 200:
-                data = response.json()
-                model_response = data.get('response', 'No response received')
-                self.add_chat_message(self.selected_model.get(), model_response)
+            
+            # Vision Text mode: Standard text delivery with optional visual context
             else:
-                self.add_chat_message("Error", f"HTTP {response.status_code}")
-        except requests.exceptions.Timeout:
-            self.add_chat_message("Error", "Request timed out. Try again.")
-        except requests.exceptions.RequestException as e:
-            self.add_chat_message("Error", f"Connection failed: {str(e)}")
+                # SIMPLE VISUAL ATTACHMENT - ONLY for the NEW message segment
+                if self.include_visual_context.get():
+                    try:
+                        if os.path.exists(self.vision_memory_file):
+                            with open(self.vision_memory_file, 'r', encoding='utf-8') as f:
+                                log_data = json.load(f)
+                            entries = log_data.get('entries', [])
+                            if entries:
+                                latest = entries[-1]
+                                visual_text = latest.get('interpreted_text', '')
+                                if visual_text:
+                                    message = f"""Based on this visual context from my screen: I can see {visual_text}\n\nPlease respond to my NEW message: {original_message}\n\nUse the visual context to provide a more informed and relevant response."""
+                                    self.add_chat_message("Info", "✅ Visual context attached to message segment")
+                                else:
+                                    self.add_chat_message("Info", "⚠️ No visual interpretation found")
+                            else:
+                                self.add_chat_message("Info", "⚠️ No visual entries - start screenshot rotation")
+                        else:
+                            self.add_chat_message("Info", "⚠️ No vision log found - start screenshot rotation")
+                    except Exception as e:
+                        self.add_chat_message("Error", f"Visual context error: {e}")
+                
+                # Handle Direct Output delivery
+                if self.direct_output_enabled.get():
+                    if self.selected_window_handle:
+                        final_message = original_message
+                        if self.include_visual_context.get():
+                            visual_context = self.get_simple_visual_context()
+                            if visual_context:
+                                final_message += f"\n\n[Visual Context: {visual_context}]"
+                        success = self.send_direct_to_window(final_message)
+                        if success:
+                            self.add_chat_message("System", "✅ Message segment sent to target window")
+                        else:
+                            self.add_chat_message("Error", "Failed to deliver message segment")
+                        return
+                    else:
+                        self.add_chat_message("Error", "No target window selected for direct output")
+                        return
+                
+                # Handle AI Model chat if not using Direct Output
+                if not self.connected:
+                    self.add_chat_message("Error", "Not connected to Ollama. Please check connection.")
+                    return
+                    
+                if not self.selected_model.get():
+                    self.add_chat_message("Error", "No model selected. Please select a model first.")
+                    return
+                
+                # Send to AI model
+                self.send_button.config(state='disabled', text="Sending...")
+                self.root.update()
+                
+                try:
+                    response = requests.post(
+                        f"{self.ollama_url}/api/generate",
+                        json={
+                            "model": self.selected_model.get(),
+                            "prompt": message,
+                            "stream": False
+                        },
+                        timeout=30,
+                        headers={"Content-Type": "application/json"}
+                    )
+                    
+                    if response.status_code == 200:
+                        data = response.json()
+                        model_response = data.get('response', 'No response received')
+                        self.add_chat_message(self.selected_model.get(), model_response)
+                    else:
+                        self.add_chat_message("Error", f"Request failed: {response.status_code}")
+                        
+                except Exception as e:
+                    self.add_chat_message("Error", f"Request error: {e}")
+                finally:
+                    self.send_button.config(state='normal', text="📤 Send")
+                    
         except Exception as e:
-            self.add_chat_message("Error", f"CRITICAL: Send message crashed: {str(e)}")
-            try:
-                if hasattr(self, 'speech_listening') and self.speech_listening:
-                    self.speech_listening = False
-                    self.speech_button.config(text="🎤 TTS", style="Shiny.TButton")
-            except:
-                pass
-        finally:
-            try:
-                self.send_button.config(state='normal', text="📤 Send")
-            except:
-                pass
+            self.add_chat_message("Error", f"Send message error: {e}")
+            self.send_button.config(state='normal', text="📤 Send")
+    
     def take_and_save_screenshot(self):
         """Take a screenshot and save it to the screenshots folder. Returns the file path or None."""
         try:
@@ -2899,8 +3148,9 @@ class OllamaInterface:
             return
             
         self.rotation_active = True
-        self.rotation_button.config(text="Stop Rotation", style="Accent.TButton")
-        self.add_chat_message("System", f"🔄 Screenshot rotation started (every {self.rotation_interval}s)")
+        self.rotation_button.config(text="🛑 STOP Rotation", style="Accent.TButton")
+        self.add_chat_message("System", f"🔄 Screenshot rotation STARTED (every {self.rotation_interval}s)")
+        self.add_chat_message("System", "🔴 Button is now HIGHLIGHTED - rotation is ACTIVE!")
         
         # Start the rotation thread
         self.rotation_thread = threading.Thread(target=self.rotation_loop, daemon=True)
@@ -2909,8 +3159,9 @@ class OllamaInterface:
     def stop_rotation(self):
         """Stop the screenshot rotation system"""
         self.rotation_active = False
-        self.rotation_button.config(text="Start Rotation", style="")
-        self.add_chat_message("System", "⏹️ Screenshot rotation stopped")
+        self.rotation_button.config(text="▶️ START Rotation", style="")
+        self.add_chat_message("System", "⏹️ Screenshot rotation STOPPED")
+        self.add_chat_message("System", "✅ Button is now NORMAL - rotation is INACTIVE!")
         
     def rotation_loop(self):
         """Main rotation loop that runs in background thread"""
@@ -3093,8 +3344,8 @@ class OllamaInterface:
         """Log vision result to JSON file"""
         try:
             # Load existing log or create new
-            if os.path.exists(self.vision_log_file):
-                with open(self.vision_log_file, 'r', encoding='utf-8') as f:
+            if os.path.exists(self.vision_memory_file):
+                with open(self.vision_memory_file, 'r', encoding='utf-8') as f:
                     log_data = json.load(f)
             else:
                 log_data = {"entries": []}
@@ -3108,7 +3359,7 @@ class OllamaInterface:
             log_data["entries"].append(entry)
             
             # Save back to file
-            with open(self.vision_log_file, 'w', encoding='utf-8') as f:
+            with open(self.vision_memory_file, 'w', encoding='utf-8') as f:
                 json.dump(log_data, f, indent=2, ensure_ascii=False)
                 
         except Exception as e:
@@ -3327,141 +3578,200 @@ class OllamaInterface:
             self.stop_speech_listening()
     
     def stop_speech_listening(self):
-        """Stop speech listening - IMMEDIATE & RELIABLE SHUTDOWN"""
+        """Stop speech listening - IMMEDIATE & RELIABLE SHUTDOWN WITH CRASH PROTECTION"""
         try:
             # IMMEDIATE STOP - Set flag first
             self.speech_listening = False
             
             # Update button immediately to show we're stopping
-            self.speech_button.config(text="⏸️ STOPPING...", style="Shiny.TButton")
-            self.add_chat_message("System", "⏹️ Speech listening STOPPING...")
+            try:
+                self.speech_button.config(text="⏸️ STOPPING...", style="Shiny.TButton")
+                self.add_chat_message("System", "⏹️ Speech listening STOPPING...")
+            except Exception as e:
+                print(f"Button update error: {e}")
             
-            # Cancel any pending silence timer
-            if self.silence_timer:
-                self.root.after_cancel(self.silence_timer)
-                self.silence_timer = None
-            if self.countdown_timer:
-                self.root.after_cancel(self.countdown_timer)
-                self.countdown_timer = None
+            # Cancel any pending silence timer - with protection
+            try:
+                if hasattr(self, 'silence_timer') and self.silence_timer:
+                    self.root.after_cancel(self.silence_timer)
+                    self.silence_timer = None
+                if hasattr(self, 'countdown_timer') and self.countdown_timer:
+                    self.root.after_cancel(self.countdown_timer)
+                    self.countdown_timer = None
+            except Exception as e:
+                print(f"Timer cancel error: {e}")
             
-            # Reset countdown display
-            self.countdown_active = False
-            self.countdown_label.config(text="")
+            # Reset countdown display - with protection
+            try:
+                self.countdown_active = False
+                if hasattr(self, 'countdown_label'):
+                    self.countdown_label.config(text="")
+            except Exception as e:
+                print(f"Countdown reset error: {e}")
             
-            # FORCE STOP the whisper instance if it exists
-            if self.speech_whisper:
-                try:
-                    # Try to stop gracefully first
-                    if hasattr(self.speech_whisper, 'stop_listening'):
-                        self.speech_whisper.stop_listening()
-                except:
-                    pass
-                self.speech_whisper = None
+            # FORCE STOP the whisper instance if it exists - with protection
+            try:
+                if hasattr(self, 'speech_whisper') and self.speech_whisper:
+                    try:
+                        # Try to stop gracefully first
+                        if hasattr(self.speech_whisper, 'stop_listening'):
+                            self.speech_whisper.stop_listening()
+                    except:
+                        pass
+                    self.speech_whisper = None
+            except Exception as e:
+                print(f"Whisper stop error: {e}")
                 
             # Give thread a moment to see the stop flag, then clean up
             def finalize_stop():
                 try:
                     self.speech_thread = None
                     self.speech_button.config(text="🎤 TTS", style="Shiny.TButton")
-                    
                     self.add_chat_message("System", "✅ Speech listening STOPPED completely")
-                except:
-                    pass
+                except Exception as e:
+                    print(f"Finalize stop error: {e}")
                     
             # Delay final cleanup to ensure thread sees the stop flag
-            self.root.after(500, finalize_stop)
+            try:
+                self.root.after(500, finalize_stop)
+            except Exception as e:
+                print(f"Schedule finalize error: {e}")
+                # Immediate cleanup if scheduling fails
+                finalize_stop()
             
         except Exception as e:
-            self.add_chat_message("Error", f"Speech stop error: {e}")
+            print(f"CRITICAL: Speech stop completely failed: {e}")
             # FORCE cleanup on any error
-            self.speech_listening = False
-            self.speech_button.config(text="🎤 TTS", style="Shiny.TButton")
-            self.speech_thread = None
+            try:
+                self.speech_listening = False
+                self.speech_button.config(text="🎤 TTS", style="Shiny.TButton")
+                self.speech_thread = None
+                self.add_chat_message("Error", f"💥 Emergency speech stop: {e}")
+            except:
+                print("Emergency cleanup also failed - system may be unstable")
     
     def insert_speech_text(self, text):
-        """SIMPLE INSTANT TEXT - like Microsoft Speech Recognition - WITH WHISPER ARTIFACT FILTER"""
+        """SIMPLE INSTANT TEXT - like Microsoft Speech Recognition - WITH CRASH PROTECTION"""
         try:
             if not text or not text.strip():
                 return
             
-            # 🛡️ WHISPER ARTIFACT FILTER - Block garbage noise from triggering silence timer!
+            # 🛡️ CRASH PROTECTION - Memory and resource safety
+            if not hasattr(self, 'message_entry') or not self.message_entry:
+                self.add_chat_message("Error", "⚠️ Message entry not available - skipping text insertion")
+                return
+                
+            # 🛡️ BASIC WHISPER ARTIFACT FILTER - Simple and stable
             text_clean = text.strip().lower()
             
-            # Common Whisper artifacts that should be IGNORED completely
+            # Basic Whisper artifacts that should be IGNORED
             whisper_artifacts = [
-                "you", "uu", "uuu", "uh", "uhh", "um", "umm",
-                "thank you", "subscribe", "like", "and subscribe",
-                "youtube", "please subscribe", "hit the bell",
-                "mm", "mmm", "hmm", "hm", "eh", "ah", "oh"
+                "you", "uu", "uuu", "uh", "uhh", "um", "umm", "mm", "mmm", 
+                "hmm", "hm", "eh", "ah", "oh",
+                "thank you", "thanks", "thank you for watching", "thanks for watching"
             ]
             
-            # Check if this is ONLY an artifact (ignore completely)
-            if text_clean in whisper_artifacts:
-                self.add_chat_message("Debug", f"🚫 BLOCKED Whisper artifact: '{text_clean}'")
-                return  # DON'T process this text AT ALL - no timer resets!
-            
-            # Check if text is too short (likely noise)
-            if len(text_clean) < 3:
-                self.add_chat_message("Debug", f"🚫 BLOCKED short artifact: '{text_clean}'")
-                return  # DON'T process short noise
+            # Simple check: ignore very short text or known artifacts
+            if len(text_clean) < 3 or text_clean in whisper_artifacts:
+                return  # DON'T process this text AT ALL
                 
-            # KEYWORD ACTIVATION CHECK - CRITICAL FIX!
+            # 🛡️ MEMORY PROTECTION - Limit text length to prevent crashes
+            max_text_length = 1000  # Reasonable limit
+            if len(text) > max_text_length:
+                text = text[:max_text_length] + "..."
+                self.add_chat_message("Debug", f"⚠️ Text truncated to {max_text_length} chars")
+                
+            # KEYWORD ACTIVATION CHECK - CRITICAL FIX WITH ENHANCED DEBUGGING!
             if self.keyword_activation_enabled.get():
                 text_lower = text.lower().strip()
+                self.add_chat_message("Debug", f"🔍 Checking text: '{text_lower}' against keywords: {self.trigger_keywords}")
                 
                 # Check if text contains any trigger keywords
                 for keyword in self.trigger_keywords:
                     if keyword in text_lower:
-                        self.add_chat_message("System", f"🎯 KEYWORD DETECTED: '{keyword}' - AUTO-SENDING!")
+                        self.add_chat_message("System", f"🎯 KEYWORD DETECTED: '{keyword}' in '{text_lower}' - AUTO-SENDING!")
                         
-                        # Add the text (without the trigger keyword for cleaner messages)
-                        clean_text = text.replace(keyword, "").strip()
-                        if clean_text and len(clean_text) > 2:
-                            current_pos = self.message_entry.index(tk.INSERT)
-                            self.message_entry.insert(current_pos, " " + clean_text)
-                            self.message_entry.see(tk.END)
+                        # Choose whether to include or strip the keyword based on user setting
+                        if self.include_keyword_in_message.get():
+                            # Include the keyword in the message
+                            final_text = text.strip()
+                            self.add_chat_message("System", f"📝 Including keyword in message")
+                        else:
+                            # Strip the keyword for cleaner messages (case-insensitive replacement)
+                            import re
+                            final_text = re.sub(re.escape(keyword), "", text, flags=re.IGNORECASE).strip()
+                            self.add_chat_message("System", f"📝 Stripping keyword '{keyword}' from message")
                         
-                        # AUTO-SEND the message immediately
-                        self.root.after(200, self.send_message)  # Quick response
+                        if final_text and len(final_text) > 2:
+                            try:
+                                current_pos = self.message_entry.index(tk.INSERT)
+                                self.message_entry.insert(current_pos, " " + final_text)
+                                self.message_entry.see(tk.END)
+                            except Exception as e:
+                                self.add_chat_message("Error", f"Text insertion error: {e}")
+                                return
+                        
+                        # AUTO-SEND the message immediately - with crash protection
+                        try:
+                            self.root.after(200, self.send_message)  # Quick response
+                        except Exception as e:
+                            self.add_chat_message("Error", f"Auto-send scheduling error: {e}")
                         return
                 
-            # INSTANT TEXT INSERTION - NO DELAYS, NO BUFFERS!
-            current_pos = self.message_entry.index(tk.INSERT)
-            self.message_entry.insert(current_pos, " " + text.strip())
-            self.message_entry.see(tk.END)
-            
-            # Update speech time for silence detection
-            import time
-            self.last_speech_time = time.time()
-            
-            # Reset auto-silence timer if active and restart it
-            if self.auto_silence_timer:
-                self.root.after_cancel(self.auto_silence_timer)
-                self.auto_silence_timer = None
-            
-            # Start auto-silence timer if enabled (FIXED: was missing restart!)
-            if self.auto_silence_enabled.get():
-                self.start_auto_silence_timer()
-            
-            # Start silence detection timer if enabled - MANUAL SILENCE ACTIVATION
-            if self.silence_activation_enabled.get():
-                # Cancel existing timers
-                self.reset_silence_timer()
+                self.add_chat_message("Debug", f"✅ No keywords found in: '{text_lower}'")
                 
-                # Start new timer - no buffer, direct approach
-                duration_str = self.silence_duration.get()
-                duration_seconds = int(duration_str.replace('s', ''))
-                duration_ms = duration_seconds * 1000
+            # INSTANT TEXT INSERTION - NO DELAYS, NO BUFFERS! WITH CRASH PROTECTION
+            try:
+                current_pos = self.message_entry.index(tk.INSERT)
+                self.message_entry.insert(current_pos, " " + text.strip())
+                self.message_entry.see(tk.END)
+            except Exception as e:
+                self.add_chat_message("Error", f"💥 Text insertion failed: {e}")
+                return
+            
+            # Update speech time for silence detection - with protection
+            try:
+                import time
+                self.last_speech_time = time.time()
+            except Exception as e:
+                self.add_chat_message("Error", f"Time update error: {e}")
+            
+            # Reset auto-silence timer if active and restart it - with protection
+            try:
+                if hasattr(self, 'auto_silence_timer') and self.auto_silence_timer:
+                    self.root.after_cancel(self.auto_silence_timer)
+                    self.auto_silence_timer = None
                 
-                self.silence_timer = self.root.after(duration_ms, self.on_silence_detected)
-                
-                # Show countdown
-                self.countdown_remaining = duration_seconds
-                self.countdown_active = True
-                self.update_countdown_display()
+                # Start auto-silence timer if enabled (FIXED: was missing restart!)
+                if hasattr(self, 'auto_silence_enabled') and self.auto_silence_enabled.get():
+                    self.start_auto_silence_timer()
+            except Exception as e:
+                self.add_chat_message("Error", f"Auto-silence timer error: {e}")
+            
+            # Start silence detection timer if enabled - MANUAL SILENCE ACTIVATION WITH PROTECTION
+            try:
+                if hasattr(self, 'silence_activation_enabled') and self.silence_activation_enabled.get():
+                    # Cancel existing timers
+                    self.reset_silence_timer()
+                    
+                    # Start new timer - no buffer, direct approach
+                    duration_str = self.silence_duration.get()
+                    duration_seconds = int(duration_str.replace('s', ''))
+                    duration_ms = duration_seconds * 1000
+                    
+                    self.add_chat_message("Debug", f"🕐 Starting silence timer: {duration_seconds}s for text: '{text[:30]}...'")
+                    self.silence_timer = self.root.after(duration_ms, self.on_silence_detected)
+                    
+                    # Show countdown
+                    self.countdown_remaining = duration_seconds
+                    self.countdown_active = True
+                    self.update_countdown_display()
+            except Exception as e:
+                self.add_chat_message("Error", f"Silence timer error: {e}")
             
         except Exception as e:
-            self.add_chat_message("Error", f"Speech insertion failed: {e}")
+            self.add_chat_message("Error", f"💥 CRITICAL: Speech insertion completely failed: {e}")
+            # Don't crash the whole system - just log and continue
     
     def process_speech_buffer(self):
         """Process accumulated speech buffer with FLOWING approach - faster, smoother text delivery"""
@@ -3490,11 +3800,20 @@ class OllamaInterface:
                     if keyword in text_lower:
                         self.add_chat_message("System", f"🎯 KEYWORD DETECTED: '{keyword}' - AUTO-SENDING!")
                         
-                        # Add the text (without the trigger keyword for cleaner messages)
-                        clean_text = accumulated_text.replace(keyword, "").strip()
-                        if clean_text and len(clean_text) > 2:
+                        # Choose whether to include or strip the keyword based on user setting
+                        if self.include_keyword_in_message.get():
+                            # Include the keyword in the message
+                            final_text = accumulated_text.strip()
+                            self.add_chat_message("System", f"📝 Including keyword in message")
+                        else:
+                            # Strip the keyword for cleaner messages (case-insensitive replacement)
+                            import re
+                            final_text = re.sub(re.escape(keyword), "", accumulated_text, flags=re.IGNORECASE).strip()
+                            self.add_chat_message("System", f"📝 Stripping keyword '{keyword}' from message")
+                        
+                        if final_text and len(final_text) > 2:
                             current_pos = self.message_entry.index(tk.INSERT)
-                            self.message_entry.insert(current_pos, " " + clean_text)
+                            self.message_entry.insert(current_pos, " " + final_text)
                         
                         # AUTO-SEND the message with flowing delay
                         self.root.after(300, self.send_message)  # Quick response
@@ -3638,19 +3957,30 @@ class OllamaInterface:
             self.add_chat_message("Error", f"Countdown display error: {e}")
     
     def on_silence_detected(self):
-        """Called when silence duration is reached - AUTO-SEND MESSAGE"""
+        """Called when silence duration is reached - AUTO-SEND MESSAGE WITH SAFETY CHECKS"""
         try:
             import time
+            
+            # SAFETY CHECK: Only activate if silence activation is still enabled
+            if not self.silence_activation_enabled.get():
+                self.add_chat_message("Debug", "🚫 Silence detected but silence activation is now disabled - ignoring")
+                self.countdown_label.config(text="")
+                self.silence_timer = None
+                self.countdown_active = False
+                return
             
             # Double-check that enough time has actually passed
             time_since_speech = time.time() - self.last_speech_time
             silence_duration = int(self.silence_duration.get().replace('s', ''))
+            
+            self.add_chat_message("Debug", f"🕐 Silence check: {time_since_speech:.1f}s passed, needed {silence_duration}s")
             
             if time_since_speech >= (silence_duration - 0.1):  # Small tolerance
                 # Check if there's actually a message to send
                 message_content = self.get_message_text().strip()
                 if message_content:
                     self.add_chat_message("System", f"🤫 SILENCE DETECTED ({silence_duration}s) - AUTO-SENDING MESSAGE!")
+                    self.add_chat_message("Debug", f"💬 Message being sent: '{message_content[:50]}...'")
                     
                     # Clear countdown display
                     self.countdown_active = False
@@ -3664,6 +3994,9 @@ class OllamaInterface:
                 else:
                     self.add_chat_message("Debug", "🤫 Silence detected, but no message to send")
                     self.countdown_label.config(text="")
+            else:
+                self.add_chat_message("Debug", f"🕐 Not enough silence time passed ({time_since_speech:.1f}s < {silence_duration}s)")
+                self.countdown_label.config(text="")
             
             # Clear the timer
             self.silence_timer = None
@@ -3747,22 +4080,52 @@ class OllamaInterface:
             self.add_chat_message("Error", f"Send marking error: {e}")
     
     def clear_message_input(self):
-        """Clear the message input (works with Text widget)"""
+        """Clear message input AND chat memory with confirmation dialog"""
+        from tkinter import messagebox
+        
+        # Show confirmation dialog
+        result = messagebox.askyesno(
+            "Clear Chat Memory", 
+            "🚨 DANGER ZONE 🚨\n\n"
+            "This will permanently delete:\n"
+            "• All your conversations and voice input\n"
+            "• All chat history (chat_memory.json)\n"
+            "• Current message input\n\n"
+            "⚠️ This action cannot be undone!\n\n"
+            "Are you sure you want to continue?",
+            icon='warning'
+        )
+        
+        if not result:
+            self.add_chat_message("System", "❌ Chat memory clearing cancelled by user")
+            return
+        
         try:
+            # Get current text length for reporting
             current_text = self.get_message_text()
             text_length = len(current_text)
             
-            # SAVE TO INPUT MEMORY before clearing
-            if text_length > 0:
-                self.save_input_memory(current_text, "clear")
-            
+            # Clear the message input
             self.message_entry.delete("1.0", tk.END)
-            if text_length > 0:
-                self.add_chat_message("System", f"🗑️ Cleared {text_length} characters from input (saved to memory)")
-            else:
-                self.add_chat_message("System", "🗑️ Input was already empty")
+            
+            # Clear chat memory completely
+            self.chat_memory = []
+            empty_chat = {
+                "total_entries": 0, 
+                "last_updated": datetime.now().isoformat(), 
+                "entries": []
+            }
+            with open(self.chat_memory_file, 'w', encoding='utf-8') as f:
+                json.dump(empty_chat, f, indent=2, ensure_ascii=False)
+            
+            self.add_chat_message("System", "🧹 CHAT MEMORY COMPLETELY CLEARED!")
+            self.add_chat_message("System", f"🗑️ Deleted {text_length} characters from input")
+            self.add_chat_message("System", "💬 All conversation history permanently deleted")
+            self.add_chat_message("System", "💾 System memory and vision memory preserved")
+            self.add_chat_message("System", "✨ Fresh chat memory ready for new conversations")
+            
         except Exception as e:
-            self.add_chat_message("Error", f"Failed to clear input: {e}")
+            self.add_chat_message("Error", f"Chat memory clearing error: {e}")
     
     def add_text_flow_separator(self):
         """Add a visual separator to create flowing text chunks without clearing"""
@@ -3834,6 +4197,7 @@ class OllamaInterface:
             from tkinter import simpledialog, messagebox
             
             current_keywords = ", ".join(self.trigger_keywords)
+            self.add_chat_message("System", f"🎯 Current keywords: {current_keywords}")
             
             new_keywords = simpledialog.askstring(
                 "Keyword Activation Settings",
@@ -3846,10 +4210,16 @@ class OllamaInterface:
                 keywords = [kw.strip().lower() for kw in new_keywords.split(",") if kw.strip()]
                 
                 if keywords:
+                    old_keywords = self.trigger_keywords.copy()
                     self.trigger_keywords = keywords
-                    self.add_chat_message("System", f"🎯 Updated trigger keywords: {', '.join(keywords)}")
+                    self.add_chat_message("System", f"🎯 KEYWORDS UPDATED!")
+                    self.add_chat_message("System", f"   OLD: {', '.join(old_keywords)}")
+                    self.add_chat_message("System", f"   NEW: {', '.join(keywords)}")
+                    self.add_chat_message("System", f"🔄 Changes active immediately for this session!")
                 else:
                     messagebox.showwarning("Invalid Input", "Please enter at least one keyword.")
+            else:
+                self.add_chat_message("System", "🎯 Keyword settings cancelled - no changes made")
                     
         except Exception as e:
             self.add_chat_message("Error", f"Keyword settings error: {e}")
@@ -3864,20 +4234,41 @@ class OllamaInterface:
         except Exception as e:
             self.add_chat_message("Error", f"Model chat placeholder error: {e}")
 
-    # ===== CHAT MEMORY SYSTEM - PRESERVE ALL CONVERSATIONS =====
+    # ===== UNIFIED MEMORY SYSTEM - CLEAN ARCHITECTURE =====
     
-    def save_chat_memory(self, message_type, sender, content):
-        """Save all chat interactions to permanent memory"""
+    def save_system_memory(self, message_type, sender, content):
+        """Save system/debug messages to system memory"""
         try:
             memory_entry = {
                 "timestamp": datetime.now().isoformat(),
-                "type": message_type,  # "system", "user", "ai", "debug", "error"
+                "type": message_type,  # "system", "debug", "error", "info"
                 "sender": sender,
                 "content": content,
                 "length": len(content)
             }
             
-            self.chat_memory.append(memory_entry)
+            self.system_memory.append(memory_entry)
+            
+            # Save to file immediately
+            self.write_system_memory_to_file()
+            
+        except Exception as e:
+            print(f"System memory save error: {e}")
+    
+    def save_chat_memory(self, input_text, action="input"):
+        """Save user conversations and input to chat memory"""
+        try:
+            if not input_text.strip():
+                return
+                
+            chat_entry = {
+                "timestamp": datetime.now().isoformat(),
+                "action": action,  # "input", "send", "clear", "copy"
+                "text": input_text.strip(),
+                "length": len(input_text.strip())
+            }
+            
+            self.chat_memory.append(chat_entry)
             
             # Save to file immediately
             self.write_chat_memory_to_file()
@@ -3885,56 +4276,50 @@ class OllamaInterface:
         except Exception as e:
             print(f"Chat memory save error: {e}")
     
-    def save_input_memory(self, input_text, action="input"):
-        """Save all input text to permanent memory"""
+    def write_system_memory_to_file(self):
+        """Write system memory to JSON file"""
         try:
-            if not input_text.strip():
-                return
-                
-            input_entry = {
-                "timestamp": datetime.now().isoformat(),
-                "action": action,  # "input", "send", "clear", "copy"
-                "text": input_text.strip(),
-                "length": len(input_text.strip())
+            memory_data = {
+                "total_entries": len(self.system_memory),
+                "last_updated": datetime.now().isoformat(),
+                "entries": self.system_memory[-1000:]  # Keep last 1000 entries
             }
             
-            self.input_memory.append(input_entry)
-            
-            # Save to file immediately
-            self.write_input_memory_to_file()
-            
+            with open(self.system_memory_file, 'w', encoding='utf-8') as f:
+                json.dump(memory_data, f, indent=2, ensure_ascii=False)
+                
         except Exception as e:
-            print(f"Input memory save error: {e}")
+            print(f"System memory file write error: {e}")
     
     def write_chat_memory_to_file(self):
         """Write chat memory to JSON file"""
         try:
-            memory_data = {
+            chat_data = {
                 "total_entries": len(self.chat_memory),
                 "last_updated": datetime.now().isoformat(),
-                "entries": self.chat_memory[-1000:]  # Keep last 1000 entries
+                "entries": self.chat_memory[-500:]  # Keep last 500 chat entries
             }
             
             with open(self.chat_memory_file, 'w', encoding='utf-8') as f:
-                json.dump(memory_data, f, indent=2, ensure_ascii=False)
+                json.dump(chat_data, f, indent=2, ensure_ascii=False)
                 
         except Exception as e:
             print(f"Chat memory file write error: {e}")
     
-    def write_input_memory_to_file(self):
-        """Write input memory to JSON file"""
+    def load_system_memory(self):
+        """Load existing system memory from file"""
         try:
-            input_data = {
-                "total_entries": len(self.input_memory),
-                "last_updated": datetime.now().isoformat(),
-                "entries": self.input_memory[-500:]  # Keep last 500 input entries
-            }
-            
-            with open(self.input_memory_file, 'w', encoding='utf-8') as f:
-                json.dump(input_data, f, indent=2, ensure_ascii=False)
+            if os.path.exists(self.system_memory_file):
+                with open(self.system_memory_file, 'r', encoding='utf-8') as f:
+                    data = json.load(f)
+                    self.system_memory = data.get('entries', [])
+                    self.add_chat_message("System", f"📂 Loaded {len(self.system_memory)} system memory entries")
+            else:
+                self.system_memory = []
                 
         except Exception as e:
-            print(f"Input memory file write error: {e}")
+            self.add_chat_message("Error", f"System memory load error: {e}")
+            self.system_memory = []
     
     def load_chat_memory(self):
         """Load existing chat memory from file"""
@@ -3951,21 +4336,6 @@ class OllamaInterface:
             self.add_chat_message("Error", f"Chat memory load error: {e}")
             self.chat_memory = []
     
-    def load_input_memory(self):
-        """Load existing input memory from file"""
-        try:
-            if os.path.exists(self.input_memory_file):
-                with open(self.input_memory_file, 'r', encoding='utf-8') as f:
-                    data = json.load(f)
-                    self.input_memory = data.get('entries', [])
-                    self.add_chat_message("System", f"📂 Loaded {len(self.input_memory)} input memory entries")
-            else:
-                self.input_memory = []
-                
-        except Exception as e:
-            self.add_chat_message("Error", f"Input memory load error: {e}")
-            self.input_memory = []
-    
     def clean_all_memory(self):
         """Clean all memory files - DANGER ZONE!"""
         try:
@@ -3975,11 +4345,11 @@ class OllamaInterface:
             with open(self.chat_memory_file, 'w', encoding='utf-8') as f:
                 json.dump(empty_chat, f, indent=2, ensure_ascii=False)
             
-            # Clean input memory
-            self.input_memory = []
-            empty_input = {"total_entries": 0, "last_updated": datetime.now().isoformat(), "entries": []}
-            with open(self.input_memory_file, 'w', encoding='utf-8') as f:
-                json.dump(empty_input, f, indent=2, ensure_ascii=False)
+            # Clean system memory
+            self.system_memory = []
+            empty_system = {"total_entries": 0, "last_updated": datetime.now().isoformat(), "entries": []}
+            with open(self.system_memory_file, 'w', encoding='utf-8') as f:
+                json.dump(empty_system, f, indent=2, ensure_ascii=False)
             
             self.add_chat_message("System", "🧹 ALL MEMORY CLEANED! Fresh start ready.")
             
